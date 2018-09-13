@@ -1,0 +1,6 @@
+framework module Pods_SOT_EventsUITests {
+  umbrella header "Pods-SOT EventsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
