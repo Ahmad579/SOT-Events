@@ -22,6 +22,10 @@ class SESignUpVC: UIViewController {
     let photoPicker = PhotoPicker()
     var cover_image: UIImage?
 
+    @IBOutlet weak var btnMale: KGRadioButton!
+    @IBOutlet weak var btnFemale: KGRadioButton!
+    @IBOutlet weak var btnOther: KGRadioButton!
+    var isMaleFemaleOtherSelect : String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,14 +106,15 @@ class SESignUpVC: UIViewController {
     
     @IBAction func btnSignUp_Pressed(_ sender: UIButton) {
         
+        let dateOfBirth = self.btnChooseDate.titleLabel?.text!
         
         let params =      ["email"                    :  txtEmail.text!  ,
                            "password"                 :  txtPass.text! ,
                            "first_name"               :  txtFirstName.text! ,
                            "last_name"                :  txtLastName.text!,
                            "phone"                    :  txtMobileNumber.text! ,
-                           "gender"                   :  "M",
-                           "date_of_birth"            :  "01/09/2017"
+                           "gender"                   :  isMaleFemaleOtherSelect! ,
+                           "date_of_birth"            :  dateOfBirth!
                            ] as [String : Any]
         
         WebServiceManager.multiPartImage(params: params as Dictionary<String, AnyObject> , serviceName: SIGNUP, imageParam:"image.png", serviceType: "Sign Up", profileImage: profilePic.image, cover_image_param: "", cover_image: nil , modelType: UserResponse.self, success: { (response) in
@@ -139,6 +144,30 @@ class SESignUpVC: UIViewController {
         }
     }
 
+    
+    @IBAction func btnMale_Pressed(_ sender: KGRadioButton) {
+        sender.isSelected = !sender.isSelected
+        btnMale.isSelected = true
+        btnFemale.isSelected = false
+        btnOther.isSelected = false
+        isMaleFemaleOtherSelect = "Male"
+    }
+    
+    @IBAction func btnFemale_Pressed(_ sender: KGRadioButton) {
+        sender.isSelected = !sender.isSelected
+        btnMale.isSelected = false
+        btnFemale.isSelected = true
+        btnOther.isSelected = false
+        isMaleFemaleOtherSelect = "Female"
+    }
+    @IBAction func btnOther_Pressed(_ sender: KGRadioButton) {
+        sender.isSelected = !sender.isSelected
+        btnMale.isSelected = false
+        btnFemale.isSelected = false
+        btnOther.isSelected = true
+        isMaleFemaleOtherSelect = "Other"
+
+    }
     
     
 }

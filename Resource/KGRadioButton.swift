@@ -9,7 +9,8 @@
 import UIKit
 
 @IBDesignable
-class KGRadioButton: UIButton {
+public class KGRadioButton: UIButton {
+    
     internal var outerCircleLayer = CAShapeLayer()
     internal var innerCircleLayer = CAShapeLayer()
     
@@ -25,12 +26,12 @@ class KGRadioButton: UIButton {
         }
     }
     
-    @IBInspectable public var outerCircleLineWidth: CGFloat = 1.0 {
+    @IBInspectable public var outerCircleLineWidth: CGFloat = 3.0 {
         didSet {
             setCircleLayouts()
         }
     }
-    @IBInspectable public var innerCircleGap: CGFloat = 1.0 {
+    @IBInspectable public var innerCircleGap: CGFloat = 3.0 {
         didSet {
             setCircleLayouts()
         }
@@ -45,6 +46,7 @@ class KGRadioButton: UIButton {
         super.init(coder: aDecoder)
         customInitialization()
     }
+    
     internal var setCircleRadius: CGFloat {
         let width = bounds.width
         let height = bounds.height
@@ -112,11 +114,12 @@ class KGRadioButton: UIButton {
     // MARK: Custom
     private func setFillState() {
         if self.isSelected {
-            innerCircleLayer.fillColor = outerCircleColor.cgColor
+            innerCircleLayer.fillColor = innerCircleCircleColor.cgColor
         } else {
             innerCircleLayer.fillColor = UIColor.clear.cgColor
         }
     }
+    
     // Overriden methods.
     override public func prepareForInterfaceBuilder() {
         customInitialization()
@@ -130,5 +133,8 @@ class KGRadioButton: UIButton {
             setFillState()
         }
     }
-   
+    
+    
+    
+    
 }
