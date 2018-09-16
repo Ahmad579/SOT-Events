@@ -37,6 +37,7 @@
 		E221ED0A21431405008040BB /* SEAskQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221ED0921431405008040BB /* SEAskQuestionVC.swift */; };
 		E221ED0C21431416008040BB /* SEFaqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221ED0B21431416008040BB /* SEFaqVC.swift */; };
 		E221ED0E2143142A008040BB /* SEVenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221ED0D2143142A008040BB /* SEVenuVC.swift */; };
+		E2495C3A214EC6AA007A1924 /* Splas.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E2495C39214EC6A9007A1924 /* Splas.jpeg */; };
 		E265E12E2146C2CD0046F0C7 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = E265E12D2146C2C50046F0C7 /* credentials.plist */; };
 		E292E9D021484685007388BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E292E9CF21484685007388BC /* GoogleService-Info.plist */; };
 		E292E9D521484D46007388BC /* SEChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E292E9D421484D46007388BC /* SEChatVC.swift */; };
@@ -184,6 +185,7 @@
 		E221ED0921431405008040BB /* SEAskQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEAskQuestionVC.swift; sourceTree = "<group>"; };
 		E221ED0B21431416008040BB /* SEFaqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEFaqVC.swift; sourceTree = "<group>"; };
 		E221ED0D2143142A008040BB /* SEVenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEVenuVC.swift; sourceTree = "<group>"; };
+		E2495C39214EC6A9007A1924 /* Splas.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splas.jpeg; sourceTree = "<group>"; };
 		E265E12D2146C2C50046F0C7 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		E292E9CF21484685007388BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E292E9D421484D46007388BC /* SEChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEChatVC.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 		E2D7FEAE21406F9F00D68831 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E2495C39214EC6A9007A1924 /* Splas.jpeg */,
 				E2B8DE2A2143DAB500FF3F3B /* DropDown */,
 				E2D7FF3321407CFE00D68831 /* TextFieldEffects */,
 				E2D7FEAF21406F9F00D68831 /* SocialMediaManager.swift */,
@@ -903,6 +906,7 @@
 				E2D7FF0F21406F9F00D68831 /* Poppins-ExtraLight.otf in Resources */,
 				E2D7FF1E21406F9F00D68831 /* Poppins-ExtraBold.otf in Resources */,
 				E2D7FF2B21406F9F00D68831 /* Info.plist in Resources */,
+				E2495C3A214EC6AA007A1924 /* Splas.jpeg in Resources */,
 				E2D7FF0D21406F9F00D68831 /* Poppins-SemiBoldItalic.otf in Resources */,
 				E2D7FF0421406F9F00D68831 /* Img_bg.png in Resources */,
 				E2199C82214124A20046908C /* EventAppVersionCell.xib in Resources */,
