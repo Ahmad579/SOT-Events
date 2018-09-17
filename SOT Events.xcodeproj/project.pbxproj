@@ -1346,7 +1346,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Z5SA5QBQW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SOT Events/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1355,7 +1355,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trg.SOT-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1367,7 +1367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Z5SA5QBQW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SOT Events/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1376,7 +1376,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trg.SOT-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
