@@ -45,8 +45,9 @@ class SEAboutVC: UIViewController , NVActivityIndicatorViewable {
         
     
         startAnimating(size, message: "", messageFont: nil , type: NVActivityIndicatorType(rawValue: 6), color:UIColor.white   , padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil , textColor: UIColor.white)
-        
-        let loginParam =  [ "user_id"        :  localUserData.user_id!
+        let idOfUser = UserDefaults.standard.integer(forKey: "id")
+
+        let loginParam =  [ "user_id"        :  "\(idOfUser)"
             
             ] as [String : Any]
         WebServiceManager.post(params:loginParam as Dictionary<String, AnyObject> , serviceName: ABOUT_API, isLoaderShow: false, serviceType: "Login", modelType: UserResponse.self, success: { (response) in

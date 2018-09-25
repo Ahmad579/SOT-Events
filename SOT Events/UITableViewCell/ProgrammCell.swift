@@ -10,6 +10,8 @@ import UIKit
 
 protocol SpeakerDetail {
     func selectSpeaker(cell : ProgrammCell , indexCheck : IndexPath , participant : ParticipationObject)
+    func registerUserForProgram(cell : ProgrammCell , indexCheck : IndexPath)
+    
 }
 
 class ProgrammCell: UITableViewCell {
@@ -20,6 +22,8 @@ class ProgrammCell: UITableViewCell {
     
     @IBOutlet weak var collectionViewCell: UICollectionView!
     var participation : [ParticipationObject]?
+    var participationOffline : [Participation]?
+
     var index : IndexPath?
     var delegate : SpeakerDetail?
     
@@ -34,29 +38,49 @@ class ProgrammCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func btnRegisterButton_Pressed(_ sender: UIButton) {
+        sender.isSelected =  !sender.isSelected
+        self.delegate?.registerUserForProgram(cell: self , indexCheck: index!)
+    }
 }
 
 extension ProgrammCell : UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (participation?.count)!
+        if Connectivity.isConnectedToInternet() {
+            return (participation?.count)!
+        } else {
+            return (participationOffline?.count)!
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ParticipateCell", for: indexPath) as! ParticipateCell
-        
-        WAShareHelper.loadImage(urlstring: (participation![indexPath.row].participant_photo)! , imageView: cell.imgOfUser, placeHolder: "rectangle_placeholder")
-        let cgFloat: CGFloat = cell.imgOfUser.frame.size.width/2.0
-        let someFloat = Float(cgFloat)
-        WAShareHelper.setViewCornerRadius(cell.imgOfUser, radius: CGFloat(someFloat))
+        if Connectivity.isConnectedToInternet() {
+            WAShareHelper.loadImage(urlstring: (participation![indexPath.row].participant_photo)! , imageView: cell.imgOfUser, placeHolder: "rectangle_placeholder")
+            let cgFloat: CGFloat = cell.imgOfUser.frame.size.width/2.0
+            let someFloat = Float(cgFloat)
+            WAShareHelper.setViewCornerRadius(cell.imgOfUser, radius: CGFloat(someFloat))
+
+        } else {
+            WAShareHelper.loadImage(urlstring: (participationOffline![indexPath.row].participant_photo)! , imageView: cell.imgOfUser, placeHolder: "rectangle_placeholder")
+            let cgFloat: CGFloat = cell.imgOfUser.frame.size.width/2.0
+            let someFloat = Float(cgFloat)
+            WAShareHelper.setViewCornerRadius(cell.imgOfUser, radius: CGFloat(someFloat))
+
+        }
 
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let obj = self.participation![indexPath.row]
-        self.delegate?.selectSpeaker(cell: self, indexCheck: indexPath , participant: obj)
+        let obj : ParticipationObject
+        if Connectivity.isConnectedToInternet() {
+            let obj = self.participation![indexPath.row]
+            self.delegate?.selectSpeaker(cell: self, indexCheck: indexPath , participant: obj)
+
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sizeOfCell = self.collectionViewCell.frame.size.width/6

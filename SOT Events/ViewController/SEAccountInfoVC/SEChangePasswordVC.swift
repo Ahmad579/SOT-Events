@@ -32,8 +32,13 @@ class SEChangePasswordVC: UIViewController , NVActivityIndicatorViewable {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnChangeBtn_Pressed(_ sender: UIButton) {
-        
-        let loginParam = [ "user_id"             :  localUserData.user_id!,
+        let fistName = UserDefaults.standard.string(forKey: "first_name")
+        let lastName = UserDefaults.standard.string(forKey: "last_name")
+        let email = UserDefaults.standard.string(forKey: "email")
+        let phone = UserDefaults.standard.string(forKey: "phone")
+        let idOfUsers = UserDefaults.standard.string(forKey: "id")
+
+        let loginParam = [ "user_id"             :  idOfUsers!,
                            "current_password"    :  txtCurrentPassword.text! ,
                            "new_password"        :  txtNewPass.text!
             ] as [String : Any]

@@ -19,20 +19,32 @@ class SEQRCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblUserName.text = localUserData.first_name
+        let fistName = UserDefaults.standard.string(forKey: "first_name")
+        let lastName = UserDefaults.standard.string(forKey: "last_name")
+        let email = UserDefaults.standard.string(forKey: "email")
+        let phone = UserDefaults.standard.string(forKey: "phone")
+        let idOfUsers = UserDefaults.standard.string(forKey: "id")
+        let qrCode = UserDefaults.standard.string(forKey: "qrcode")
+        let imgOFUser = UserDefaults.standard.string(forKey: "image")
+
+
+        //                UserDefaults.standard.set(localUserData.qrcode , forKey: "qrcode")
+
+        lblUserName.text = "\(fistName!) \(lastName!)"
 //        lblUserID.text = localUserData.user_id
         
-        let userID = localUserData.user_id
+//        let userID = localUserData.user_id
         
-        lblUserID.text = "User ID :   \(userID!)"
-        lblEmailOFUser.text = localUserData.email
-        
-        let qrImage = localUserData.qrcode
+        lblUserID.text = "User ID :   \(idOfUsers!)"
+        lblEmailOFUser.text = email
+        //                UserDefaults.standard.set(localUserData.image , forKey: "image")
+
+        let qrImage = qrCode
         if qrImage != nil {
             WAShareHelper.loadImage(urlstring: qrImage! , imageView: imgOfQRCode!, placeHolder: "userProfile")
         }
         
-        guard let imge = localUserData.image else {
+        guard let imge = imgOFUser else {
             return
         }
         WAShareHelper.loadImage(urlstring: imge , imageView: imgOfUser!, placeHolder: "userProfile")

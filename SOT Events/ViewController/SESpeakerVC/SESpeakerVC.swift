@@ -27,19 +27,57 @@ class SESpeakerVC: UIViewController, NVActivityIndicatorViewable {
     var searchActive : Bool = false
 
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    var  thread : Participation?
+    var arrayOfParticipation : NSArray?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblView.register(UINib(nibName: "ParticipationListCell", bundle: nil), forCellReuseIdentifier: "ParticipationListCell")
         participantInEvent = []
         objOfParticipant = []
+        
+        
         if self.responseObj?.result?.programSelect == nil {
+       
         }
         else {
             for (_ , objOfProgram) in (self.responseObj?.result?.programSelect?.enumerated())! {
                 
                 for (_, particpantUser) in (objOfProgram.participant?.enumerated())! {
-                    
                     participantInEvent?.append(particpantUser)
+                    
+                    arrayOfParticipation = Participation.fetchAll() as NSArray?
+                    let resultPredicate = NSPredicate(format: "participant_id == %@", particpantUser.participant_id!)
+                    let arrayOfFilter = arrayOfParticipation?.filtered(using: resultPredicate)
+                    
+                    if (arrayOfFilter?.count)! > 0 {
+                        
+                    } else {
+                        thread = Participation.create() as? Participation
+                        thread?.participant_id = particpantUser.participant_id
+                        thread?.participant_name = particpantUser.participant_name
+                        thread?.participant_photo = particpantUser.participant_photo
+                        thread?.designation = particpantUser.designation
+                        thread?.profile_desc = particpantUser.profile_desc
+                        thread?.role_id = particpantUser.role_id
+                        thread?.role_desc = particpantUser.role_desc
+                        thread?.gender = particpantUser.gender
+                        thread?.linkedin_url = particpantUser.linkedin_url
+                        thread?.twitter_url = particpantUser.twitter_url
+                        thread?.sub_designation = particpantUser.sub_designation ?? " "
+                        thread?.experties = particpantUser.experties ?? " "
+                        thread?.linkedin_url = particpantUser.linkedin_url ?? " "
+                        thread?.twitter_url = particpantUser.twitter_url ?? " "
+                        Participation.save()
+                    }
+                    
+
+                    
+                    
+                    
                 }
                 
             }
@@ -102,7 +140,6 @@ class SESpeakerVC: UIViewController, NVActivityIndicatorViewable {
         var allRole = [String]()
         self.objOfParticipant = []
         for (_ , info) in (self.speakerResponse?.result?.participentRole?.enumerated())! {
-//            allCategoriesList.append(info.!)
             allRole.append(info.role_desc!)
         }
         ActionSheetStringPicker.show(withTitle: "Select Categories", rows: allRole , initialSelection: 0 , doneBlock: { (picker, index, value) in

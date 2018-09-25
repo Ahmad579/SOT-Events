@@ -79,6 +79,7 @@
             <color key="backgroundColor" red="0.92549019610000005" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imgeOfTile" destination="DuL-tJ-dqM" id="TNe-L8-W8I"/>
                 <outlet property="lblSubtitle" destination="YvR-Ac-v71" id="hrJ-J4-7ve"/>
                 <outlet property="lblTitleOfHeading" destination="Evh-eA-Qbh" id="If7-4W-l6L"/>
             </connections>

@@ -10,6 +10,7 @@
 #define SOT_Events_Bridging_Header_h
 #import "UIViewController+Helper.h"
 #import "NIDropDown.h"
+#import "PAStorageHelper.h"
 
 
 #endif /* SOT_Events_Bridging_Header_h */

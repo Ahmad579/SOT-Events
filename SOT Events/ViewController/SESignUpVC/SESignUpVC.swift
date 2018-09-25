@@ -124,7 +124,8 @@ class SESignUpVC: UIViewController {
             
             
             if responseObj.success == 1 {
-                localUserData = responseObj.result?.userInfo
+                
+//                localUserData = responseObj.result?.userInfo
 
                 self.showAlertViewWithTitle(title: "SOT Event", message: responseObj.message! , dismissCompletion: {
                     

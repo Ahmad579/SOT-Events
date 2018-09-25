@@ -72,7 +72,6 @@ class SEAskQuestionMainVC: UIViewController {
             vc?.index = 3
             vc?.eventObj = eventObj
             vc?.programObject = programObject
-
             return vc!
 
         }
@@ -88,11 +87,6 @@ class SEAskQuestionMainVC: UIViewController {
         if sender.tag == 0 {
             let startVC = viewControllerAtIndex(tempIndex: 0)
             _ = startVC.view
-//            viewOfPending.backgroundColor = UIColor.white
-//            viewOfApproved.backgroundColor = UIColor(red: 171/255.0, green: 186/255.0, blue: 210/255.0, alpha: 1.0)
-//
-//            btnPending.isSelected = true
-//            btnApproved.isSelected = false
 //
             pageVC?.setViewControllers([startVC], direction: .forward , animated: true, completion: nil)
             

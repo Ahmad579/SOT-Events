@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>29734007892-j4ic9bo4mtoil74r837b6tbbvvp4vu0d.apps.googleusercontent.com</string>
+	<string>483905628399-tgp4ha88b3ug8ribki066ao5q94ekb45.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.29734007892-j4ic9bo4mtoil74r837b6tbbvvp4vu0d</string>
+	<string>com.googleusercontent.apps.483905628399-tgp4ha88b3ug8ribki066ao5q94ekb45</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAaoPnWAm9aIcNzAZTCSqjwehi5M1P53nU</string>
+	<string>AIzaSyCH9tGm9e0tLoEBFEFIs3dpc0sL3ZkNwAI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>29734007892</string>
+	<string>483905628399</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.trg.SOT-Events</string>
+	<string>com.beaconhouse.sotevents</string>
 	<key>PROJECT_ID</key>
-	<string>sot-event-1536592602765</string>
+	<string>sot-event-1534328430939</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sot-event-1536592602765.appspot.com</string>
+	<string>sot-event-1534328430939.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:29734007892:ios:7dba5fd4978392d4</string>
+	<string>1:483905628399:ios:fac0dd84cc0babfc</string>
 	<key>DATABASE_URL</key>
-	<string>https://sot-event-1536592602765.firebaseio.com</string>
+	<string>https://sot-event-1534328430939.firebaseio.com</string>
 </dict>
 </plist>

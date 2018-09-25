@@ -89,7 +89,7 @@ let RESET_PASSWORD = BASE_URL + "Signup/Resetpassword"
 
 
 let SIGNUP = BASE_URL + "signup"
-let FORGOTPASSWORD = BASE_URL + "Signup/forgot"
+let FORGOTPASSWORD = BASE_URL + "forget_password"
 let LOGIN = BASE_URL + "user_login"
 let EVENTAPI = BASE_URL + "events"
 let PROGRAMTIME_WISE = BASE_URL + "programs_timewise"
@@ -97,6 +97,16 @@ let PROGRAME = BASE_URL + "programs"
 let SPEAKER_LIST = BASE_URL + "event_participants"
 let CHANGEPASSWORD_EVENT = BASE_URL + "change_password"
 let ABOUT_API = BASE_URL + "about_us"
+let ASKQUESTION = BASE_URL + "event_ask_question"
+let INFODESK = BASE_URL + "info_desk"
+let EVENTFAQ = BASE_URL + "event_faqs"
+let HAPPENINGAPI = BASE_URL + "happenings"
+let USERMESSAGESLIST = BASE_URL + "user_messages"
+let REGISTERUSERPROGRAM = BASE_URL + "register_user_program"
+
+
+
+
 
 
 

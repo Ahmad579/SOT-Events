@@ -12,7 +12,8 @@ class DashboardCell: UITableViewCell {
 
     @IBOutlet weak var lblTitleOfHeading: UILabel!
     @IBOutlet weak var lblSubtitle: UILabel!
-    
+    @IBOutlet weak var imgeOfTile: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

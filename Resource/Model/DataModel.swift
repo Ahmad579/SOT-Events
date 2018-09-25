@@ -10,7 +10,6 @@ import Foundation
 import ObjectMapper
 import AlamofireObjectMapper
 
-
 class UserResponse: Mappable , NSCoding {
 
     var success                              :       Int?
@@ -53,7 +52,9 @@ class UserResult : Mappable , NSCoding {
     var programTime     : [ProgramsTimeObject]?
     var participent     : [ParticipationUser]?
     var participentRole     : [ParticipationRole]?
-
+    var faqEvent            : [EventFaqObject]?
+    var happeningList            : [HappeningListObject]?
+    var userMessage              : UserMessageObject?
     required init?(map: Map){
         
         
@@ -88,6 +89,10 @@ class UserResult : Mappable , NSCoding {
         programTime <- map["programs"]
         participent <- map["participants"]
         participentRole <- map["participant_roles"]
+        faqEvent        <- map["event_faqs"]
+        happeningList  <- map["happenings"]
+        userMessage    <- map["user_messages"]
+        
 
     }
 }
@@ -216,6 +221,7 @@ class EventObject : Mappable {
 
     var event_title: String?
     var event_desc: String?
+    var event_category : String?
     var active: String?
     var start_date: String?
     var end_date: String?
@@ -239,6 +245,7 @@ class EventObject : Mappable {
         event_id <- map["event_id"]
         event_title <- map["event_title"]
         event_desc <- map["event_desc"]
+        event_category <- map["event_category"]
         active <- map["active"]
         start_date <- map["start_date"]
         end_date <- map["end_date"]
@@ -378,6 +385,7 @@ class ProgramsObject : Mappable {
     
     var event_id: String?
     var schedule_id: String?
+    var user_id    : String?
     var poll_exists: String?
     var poll_active: String?
     var poll_submitted: String?
@@ -394,11 +402,15 @@ class ProgramsObject : Mappable {
     var start_time   : String?
     var end_time   : String?
     var display_date   : String?
+    var inactive_status : String?
+    var day_session : String?
+
     var location_id   : String?
     var theme_id   : String?
     var theme_desc : String?
     var venue_id   : String?
     var venue_title   : String?
+    var allow_register : String?
     var participant   : [ParticipationObject]?
 
 
@@ -410,6 +422,7 @@ class ProgramsObject : Mappable {
     func mapping(map: Map) {
         event_id <- map["event_id"]
         schedule_id <- map["schedule_id"]
+        user_id     <- map["user_id"]
         poll_exists <- map["poll_exists"]
         poll_active <- map["poll_active"]
         poll_submitted <- map["poll_submitted"]
@@ -422,15 +435,20 @@ class ProgramsObject : Mappable {
         activity_title <- map["activity_title"]
         activity_date <- map["activity_date"]
         abstract <- map["abstract"]
+        day_session <- map["day_session"]
+
+        
         start_time <- map["start_time"]
         end_time <- map["end_time"]
         display_date <- map["display_date"]
+        inactive_status <- map["inactive_status"]
         location_id <- map["location_id"]
         theme_id <- map["theme_id"]
         venue_id <- map["venue_id"]
         venue_title <- map["venue_title"]
         participant <- map["participants"]
         theme_desc  <- map["theme_desc"]
+        allow_register <- map["allow_register"]
 
         
     }
@@ -494,7 +512,8 @@ class ParticipationObject : Mappable {
     var twitter_url: String?
     var role_id: String?
     var role_desc: String?
-
+    var sub_designation : String?
+    var profile_tags : String?
     
     required init?(map: Map){
         
@@ -511,6 +530,8 @@ class ParticipationObject : Mappable {
         gender <- map["gender"]
         linkedin_url <- map["linkedin_url"]
         twitter_url <- map["twitter_url"]
+        profile_tags <- map["profile_tags"]
+        sub_designation <- map["sub_designation"]
 
         
         
@@ -589,20 +610,57 @@ class ParticipationRole : Mappable {
     }
 }
 
-class ClubDetailObject : Mappable {
+class EventFaqObject : Mappable {
     
-    var name: String?
-    var image: String?
-    var club_type: String?
-    var longitude: String?
-    var latitude: String?
-    var open_time: String?
-    var close_time: String?
-    var clunInfo  : ClubInfo?
-    var clubTeam  : [ClubTeam]?
-    var clubPhoto : [ClubPhoto]?
-    var clubVideo : [ClubVideos]?
+    var question_id: String?
+    var question_title: String?
+    var question_detail: String?
+    var status: String?
+
+    required init?(map: Map){
+        
+    }
     
+    func mapping(map: Map) {
+        question_id <- map["question_id"]
+        question_title <- map["question_title"]
+        question_detail <- map["question_detail"]
+        status <- map["status"]
+
+        
+    }
+}
+
+class HappeningListObject : Mappable {
+    
+    var id: String?
+    var title: String?
+    var categories: String?
+    var description: String?
+    var url: String?
+    var image_url : String?
+    var date_filter: String?
+
+    required init?(map: Map){
+        
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        title <- map["title"]
+        categories <- map["categories"]
+        description <- map["description"]
+        url <- map["url"]
+        image_url <- map["image_url"]
+        date_filter <- map["date_filter"]
+
+        
+    }
+}
+
+class UserMessageObject : Mappable {
+    
+    var messages: [MessageObject]?
     
     
     required init?(map: Map){
@@ -610,18 +668,34 @@ class ClubDetailObject : Mappable {
     }
     
     func mapping(map: Map) {
-        name <- map["name"]
-        club_type <- map["club_type"]
-        image <- map["image"]
-        longitude <- map["longitude"]
-        latitude <- map["latitude"]
-        open_time <- map["open_time"]
-        close_time <- map["close_time"]
-        clunInfo <- map["info"]
-        clubTeam <- map["team"]
-        clubPhoto <- map["bar_images"]
-        clubVideo <- map["bar_videos"]
+        messages <- map["messages"]
 
+        
+    }
+}
+
+class MessageObject : Mappable  {
+    
+    var msg_id: String?
+    var from_user_id: String?
+    var to_user_id: String?
+    var msg_desc: String?
+    var sent_date: String?
+    var read_status: String?
+    
+    
+    required init?(map: Map){
+        
+    }
+    
+    func mapping(map: Map) {
+        msg_id <- map["msg_id"]
+        from_user_id <- map["from_user_id"]
+        to_user_id <- map["to_user_id"]
+        msg_desc <- map["msg_desc"]
+        sent_date <- map["sent_date"]
+        read_status <- map["read_status"]
+        
         
     }
 }

@@ -15,11 +15,24 @@ class SESpeakerProfile: UIViewController {
     var userParticipantProgram : [ProgramsObject]?
     var participant  : ParticipationObject?
     var eventObj : EventObject?
+    
+    
+    var userOfflineParticipantProgram : [ProgramModel]?
+    var participantOffline  : Participation?
+    var eventOffline : EventModel?
+    
+    var  arrayOfProgram : NSArray?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         userParticipantProgram = []
+        userOfflineParticipantProgram = []
+        
+        if Connectivity.isConnectedToInternet() {
+            
+     
         
         for (_ , objOfProgram) in (self.responseObj?.result?.programSelect?.enumerated())! {
             
@@ -31,7 +44,28 @@ class SESpeakerProfile: UIViewController {
             }
             
         }
-        
+        } else {
+            arrayOfProgram = ProgramModel.fetchAll() as NSArray?
+            
+            for (index , objOfProgram) in (arrayOfProgram?.enumerated())! {
+                
+                let obj = self.arrayOfProgram![index] as? ProgramModel
+                 let particpantInProgram = obj?.participantInProgram?.allObjects as? [Participation]?
+                for (indexCheck , particpantUser) in (particpantInProgram??.enumerated())! {
+                    
+                    let participate = particpantInProgram!![indexCheck] as! Participation
+//                    let particpantInProgram = obj?.participantInProgram![indexCheck] as? Participation
+
+                    if participantOffline?.participant_id == participate.participant_id {
+                        self.userOfflineParticipantProgram?.append(objOfProgram as! ProgramModel)
+                        
+                    }
+                }
+                
+            }
+            
+
+        }
         
         tblView.delegate = self
         tblView.dataSource = self
@@ -61,7 +95,13 @@ extension SESpeakerProfile : UITableViewDelegate , UITableViewDataSource {
         } else if section == 1 {
             return 1
         } else {
-            return (userParticipantProgram?.count)!
+            if Connectivity.isConnectedToInternet() {
+                return (userParticipantProgram?.count)!
+
+            } else {
+                return (userOfflineParticipantProgram?.count)!
+
+            }
         }
     }
     
@@ -69,26 +109,60 @@ extension SESpeakerProfile : UITableViewDelegate , UITableViewDataSource {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SpeakerProfileCell", for: indexPath) as? SpeakerProfileCell
-               cell?.lblUserName.text = participant?.participant_name
-               cell?.lblDesignation.text = participant?.designation
-               cell?.lblDetail.text = participant?.profile_desc
-            WAShareHelper.loadImage(urlstring: (participant?.participant_photo)! , imageView: (cell?.lblUserProiflePic)!, placeHolder: "rectangle_placeholder")
+            if Connectivity.isConnectedToInternet() {
+                cell?.lblUserName.text = participant?.participant_name
+                cell?.lblDesignation.text = participant?.designation
+                cell?.lblDetail.text = participant?.profile_desc
+                WAShareHelper.loadImage(urlstring: (participant?.participant_photo)! , imageView: (cell?.lblUserProiflePic)!, placeHolder: "rectangle_placeholder")
+
+            } else {
+                
+                cell?.lblUserName.text = participantOffline?.participant_name
+                cell?.lblDesignation.text = participantOffline?.designation
+                cell?.lblDetail.text = participantOffline?.profile_desc
+                WAShareHelper.loadImage(urlstring: (participantOffline?.participant_photo)! , imageView: (cell?.lblUserProiflePic)!, placeHolder: "rectangle_placeholder")
+
+            }
 
             
             return cell!
         }else if indexPath.section == 1  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EventDate", for: indexPath) as? SpeakerProfileCell
-            cell?.lblEventTitle.text = eventObj?.event_title
+            if Connectivity.isConnectedToInternet() {
+                cell?.lblEventTitle.text = eventObj?.event_title
+
+            } else {
+                cell?.lblEventTitle.text = eventOffline?.event_title
+
+            }
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProgrammCell", for: indexPath) as? ProgrammCell
-            cell?.lblActivity_title.text = userParticipantProgram![indexPath.row].activity_title
-            cell?.lblActivity_desc.text = userParticipantProgram![indexPath.row].activity_desc
-            cell?.lblDisplay_date.text = userParticipantProgram![indexPath.row].display_date
-            cell?.lblVenue_title.text = userParticipantProgram![indexPath.row].venue_title
             
-            cell?.participation = userParticipantProgram![indexPath.row].participant
-            cell?.collectionViewCell.reloadData()
+            if Connectivity.isConnectedToInternet() {
+                cell?.lblActivity_title.text = userParticipantProgram![indexPath.row].activity_title
+                cell?.lblActivity_desc.text = userParticipantProgram![indexPath.row].activity_desc
+                cell?.lblDisplay_date.text = userParticipantProgram![indexPath.row].display_date
+                cell?.lblVenue_title.text = userParticipantProgram![indexPath.row].venue_title
+                cell?.participation = userParticipantProgram![indexPath.row].participant
+                cell?.collectionViewCell.reloadData()
+
+
+            } else {
+                cell?.lblActivity_title.text = userOfflineParticipantProgram![indexPath.row].activity_title
+                cell?.lblActivity_desc.text = userOfflineParticipantProgram![indexPath.row].activity_desc
+                cell?.lblDisplay_date.text = userOfflineParticipantProgram![indexPath.row].display_date
+                cell?.lblVenue_title.text = userOfflineParticipantProgram![indexPath.row].venue_title
+                
+                let participateProgram = userOfflineParticipantProgram![indexPath.row].participantInProgram?.allObjects as? [Participation]?
+                cell?.participationOffline = participateProgram!
+
+//                cell?.participation = userParticipantProgram![indexPath.row].participant
+                cell?.collectionViewCell.reloadData()
+
+
+            }
+            
 
             return cell!
         }

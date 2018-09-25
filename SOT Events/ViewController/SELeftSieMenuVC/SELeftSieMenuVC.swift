@@ -54,10 +54,10 @@ extension SELeftSieMenuVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoCell", for: indexPath) as? UserInfoCell
-            let firstName = localUserData.first_name
-            let lastName = localUserData.last_name
+            let fistName = UserDefaults.standard.string(forKey: "first_name" )
+            let lastName = UserDefaults.standard.string(forKey: "last_name")
             
-            cell?.lblNAme.text = "\(firstName!) \(lastName!)"
+            cell?.lblNAme.text = "\(fistName!) \(lastName!)"
             return cell!
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AccountInfo", for: indexPath) as? AccountInfo

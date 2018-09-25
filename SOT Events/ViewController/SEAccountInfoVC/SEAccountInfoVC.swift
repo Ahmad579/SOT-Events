@@ -26,16 +26,39 @@ class SEAccountInfoVC: UIViewController {
         super.viewDidLoad()
         
 //        let userImage = localUserData.image
+        //                UserDefaults.standard.set(self.txtEmail.text! , forKey: "email")
+        //                UserDefaults.standard.set(self.txtPass.text! , forKey: "password")
+        //                UserDefaults.standard.set(localUserData.user_id , forKey: "id")
+        //                UserDefaults.standard.set(localUserData.participant_id , forKey: "participant_id")
+        //                UserDefaults.standard.set(localUserData.first_name , forKey: "first_name")
+        //                UserDefaults.standard.set(localUserData.last_name , forKey: "last_name")
+        //                UserDefaults.standard.set(localUserData.date_of_birth , forKey: "date_of_birth")
+        //                UserDefaults.standard.set(localUserData.phone , forKey: "phone")
+        //                UserDefaults.standard.set(localUserData.image , forKey: "image")
+        //                UserDefaults.standard.set(localUserData.qrcode , forKey: "qrcode")
+        //                UserDefaults.standard.set(localUserData.gender , forKey: "gender")
         
-        lblUserName.text = localUserData.first_name
-        lblUserId.text = localUserData.user_id
-        lblEmail.text = localUserData.email
-        lblMobile.text = localUserData.phone
+        
+        let idOfUsers = UserDefaults.standard.string(forKey: "id")
+
+//        let idOfUser = UserDefaults.standard.integer(forKey: "id")
+        let fistName = UserDefaults.standard.string(forKey: "first_name")
+        let lastName = UserDefaults.standard.string(forKey: "last_name")
+        let email = UserDefaults.standard.string(forKey: "email")
+        let phone = UserDefaults.standard.string(forKey: "phone")
+        let imageOfUser = UserDefaults.standard.string(forKey: "image")
+
+         lblUserName.text = "\(fistName!) \(lastName!)"
+
+//        lblUserName.text = localUserData.first_name
+        lblUserId.text = idOfUsers
+        lblEmail.text = email
+        lblMobile.text = phone
         let tapGestureRecognizerforDp = UITapGestureRecognizer(target:self, action:#selector(SEAccountInfoVC.imageTappedForDp(img:)))
         imgOfUser.isUserInteractionEnabled = true
         imgOfUser.addGestureRecognizer(tapGestureRecognizerforDp)
         
-        guard let imge = localUserData.image else {
+        guard let imge = imageOfUser else {
             return
         }
         WAShareHelper.loadImage(urlstring: imge , imageView: imgOfUser!, placeHolder: "rectangle_placeholder")

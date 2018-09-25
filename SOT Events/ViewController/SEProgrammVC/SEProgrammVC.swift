@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import Alamofire
 
 class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
     
@@ -15,6 +16,10 @@ class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
     @IBOutlet var tblView: UITableView!
     let size = CGSize(width: 60, height: 60)
     var eventObj : EventObject?
+    
+    var eventObjOffline : EventModel?
+
+    
     var activityTypeMenu: NIDropDown?
     var dimensionTypeMenu: NIDropDown?
     var venueTypeMenu: NIDropDown?
@@ -24,6 +29,11 @@ class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
     var dimensionArray: [String]? = []
     var venueArray: [String]? = []
     var timeSlotArray: [String]? = []
+    
+    
+    
+    @IBOutlet weak var lblDate: UILabel!
+
     
     var selectedActivity : String?
     @IBOutlet weak var viewOfFilter: UIView!
@@ -35,6 +45,10 @@ class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
     var isFirstDate : [ProgramsObject]?
     var isSecondDate : [ProgramsObject]?
     var responseObj: UserResponse?
+    
+    var isOfflineFirstDate : [ProgramModel]?
+    var isOfflineSecondDate : [ProgramModel]?
+
     
     @IBOutlet weak var btnActivityType: UIButton!
     @IBOutlet weak var btnDimensionType: UIButton!
@@ -65,25 +79,44 @@ class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
         btnDay2.isSelected = false
         btnDay1.backgroundColor = UIColor(red: 64/255.0, green: 84/255.0, blue: 178/255.0, alpha: 1.0)
         btnDay2.backgroundColor = UIColor.white
-        if isFirstDate?.count != 0 {
-            tblView.delegate = self
-            tblView.dataSource = self
-            tblView.reloadData()
+        
+        if Connectivity.isConnectedToInternet() {
+            lblDate.text = eventObj?.event_title
+            if isFirstDate?.count != 0 {
+                tblView.delegate = self
+                tblView.dataSource = self
+                tblView.reloadData()
+            }
+            else if isSecondDate?.count != 0 {
+                tblView.delegate = self
+                tblView.dataSource = self
+                tblView.reloadData()
+            }
+        } else {
+            lblDate.text = eventObjOffline?.event_title
+            if isOfflineFirstDate?.count != 0 {
+                tblView.delegate = self
+                tblView.dataSource = self
+                tblView.reloadData()
+            }
+            else if isOfflineSecondDate?.count != 0 {
+                tblView.delegate = self
+                tblView.dataSource = self
+                tblView.reloadData()
+            }
         }
-        else if isSecondDate?.count != 0 {
-            tblView.delegate = self
-            tblView.dataSource = self
-            tblView.reloadData()
-        }
-        for (_ , scheduleData) in (eventObj?.activityType?.enumerated())!{
-            activityTypeArray?.append(scheduleData.activity_desc!)
-        }
-        for (_ , scheduleData) in (eventObj?.eventDimention?.enumerated())!{
-            dimensionArray?.append(scheduleData.theme_desc!)
-        }
-        for (_ , scheduleData) in (eventObj?.eventVenue?.enumerated())!{
-            venueArray?.append(scheduleData.venue_title!)
-        }
+        
+      
+        
+//        for (_ , scheduleData) in (eventObj?.activityType?.enumerated())!{
+//            activityTypeArray?.append(scheduleData.activity_desc!)
+//        }
+//        for (_ , scheduleData) in (eventObj?.eventDimention?.enumerated())!{
+//            dimensionArray?.append(scheduleData.theme_desc!)
+//        }
+//        for (_ , scheduleData) in (eventObj?.eventVenue?.enumerated())!{
+//            venueArray?.append(scheduleData.venue_title!)
+//        }
     }
 
     @IBAction func btnActivityType(_ sender: UIButton) {
@@ -217,7 +250,7 @@ class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
     
     
     @IBAction func btnApplyFilter_Pressed(_ sender: UIButton) {
-        viewOfFilter.isHidden = false
+//        viewOfFilter.isHidden = false
         
     }
     
@@ -271,10 +304,24 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
+            
+            
             if isDay1Select == true {
-                return (isFirstDate?.count)!
+                if Connectivity.isConnectedToInternet() {
+                    return (isFirstDate?.count)!
+
+                } else {
+                    return (isOfflineFirstDate?.count)!
+                }
             } else {
-                return (isSecondDate?.count)!
+                
+                if Connectivity.isConnectedToInternet() {
+                    return (isSecondDate?.count)!
+
+                } else {
+                    return (isOfflineSecondDate?.count)!
+                }
+                
             }
         }
     }
@@ -283,31 +330,68 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProgramHeaderCell", for: indexPath) as? ProgramHeaderCell
-            cell?.lblDisplayDate.text = self.eventObj?.eventDate![indexPath.row].event_display_date
+            if Connectivity.isConnectedToInternet() {
+                cell?.lblDisplayDate.text = self.eventObj?.eventDate![indexPath.row].event_display_date
+            } else {
+                cell?.lblDisplayDate.text = self.eventObjOffline?.display_date
+            }
             return cell!
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProgrammCell", for: indexPath) as? ProgrammCell
             
-            if isDay1Select == true  {
-                cell?.lblActivity_title.text = self.isFirstDate![indexPath.row].activity_title
-                cell?.lblActivity_desc.text = self.isFirstDate![indexPath.row].activity_desc
-                cell?.lblDisplay_date.text = self.isFirstDate![indexPath.row].display_date
-                cell?.lblVenue_title.text = self.isFirstDate![indexPath.row].venue_title
-                cell?.delegate = self
-                cell?.index = indexPath
-                cell?.participation = self.isFirstDate![indexPath.row].participant
-                cell?.collectionViewCell.reloadData()
-            }else {
-                cell?.lblActivity_title.text = self.isSecondDate![indexPath.row].activity_title
-                cell?.lblActivity_desc.text = self.isSecondDate![indexPath.row].activity_desc
-                cell?.lblDisplay_date.text = self.isSecondDate![indexPath.row].display_date
-                cell?.lblVenue_title.text = self.isSecondDate![indexPath.row].venue_title
-                cell?.delegate = self
-                cell?.index = indexPath
+            if Connectivity.isConnectedToInternet() {
+                if isDay1Select == true  {
+                    cell?.lblActivity_title.text = self.isFirstDate![indexPath.row].activity_title
+                    cell?.lblActivity_desc.text = self.isFirstDate![indexPath.row].activity_desc
+                    cell?.lblDisplay_date.text = self.isFirstDate![indexPath.row].display_date
+                    cell?.lblVenue_title.text = self.isFirstDate![indexPath.row].venue_title
+                    cell?.delegate = self
+                    cell?.index = indexPath
+                    cell?.participation = self.isFirstDate![indexPath.row].participant
+                    cell?.collectionViewCell.reloadData()
+                }else {
+                    cell?.lblActivity_title.text = self.isSecondDate![indexPath.row].activity_title
+                    cell?.lblActivity_desc.text = self.isSecondDate![indexPath.row].activity_desc
+                    cell?.lblDisplay_date.text = self.isSecondDate![indexPath.row].display_date
+                    cell?.lblVenue_title.text = self.isSecondDate![indexPath.row].venue_title
+                    cell?.delegate = self
+                    cell?.index = indexPath
+                    
+                    cell?.participation = self.isSecondDate![indexPath.row].participant
+                    cell?.collectionViewCell.reloadData()
+                }
+            } else {
                 
-                cell?.participation = self.isSecondDate![indexPath.row].participant
-                cell?.collectionViewCell.reloadData()
+                if isDay1Select == true  {
+                    let objOfDay1 = self.isOfflineFirstDate![indexPath.row] as ProgramModel
+                    cell?.lblActivity_title.text = objOfDay1.activity_title
+                    cell?.lblActivity_desc.text = objOfDay1.activity_desc
+                    cell?.lblDisplay_date.text = objOfDay1.display_date
+                    cell?.lblVenue_title.text = objOfDay1.venue_title
+                    cell?.delegate = self
+                    cell?.index = indexPath
+                    let orderedPlayers = objOfDay1.participantInProgram?.allObjects as? [Participation]
+                    cell?.participationOffline = orderedPlayers
+                    cell?.collectionViewCell.reloadData()
+                }else {
+                    let objOfDay2 = self.isOfflineSecondDate![indexPath.row] as ProgramModel
+
+                    cell?.lblActivity_title.text = objOfDay2.activity_title
+                    cell?.lblActivity_desc.text = objOfDay2.activity_desc
+                    cell?.lblDisplay_date.text = objOfDay2.display_date
+                    cell?.lblVenue_title.text = objOfDay2.venue_title
+                    cell?.delegate = self
+                    cell?.index = indexPath
+                  
+                    let orderedPlayers = objOfDay2.participantInProgram?.allObjects as? [Participation]
+                    cell?.participationOffline = orderedPlayers
+
+//                    cell?.participation = self.isSecondDate![indexPath.row].participant
+                    cell?.collectionViewCell.reloadData()
+                }
             }
+            
+         
             
             return cell!
             
@@ -318,16 +402,30 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SESessionDetailVC") as? SESessionDetailVC
-        if isDay1Select == true {
-            vc?.programObject = self.isFirstDate![indexPath.row]
-            vc?.responseObj = self.responseObj
+        if Connectivity.isConnectedToInternet() {
+            if isDay1Select == true {
+                vc?.programObject = self.isFirstDate![indexPath.row]
+                vc?.responseObj = self.responseObj
+            } else {
+                vc?.programObject = self.isSecondDate![indexPath.row]
+                vc?.responseObj = self.responseObj
+                
+            }
+            //        vc?.programObject = self.responseObj?.result?.programSelect![indexPath.row]
+            vc?.eventObj = self.eventObj
+
         } else {
-            vc?.programObject = self.isSecondDate![indexPath.row]
-            vc?.responseObj = self.responseObj
-            
+            if isDay1Select == true {
+                vc?.programModel = self.isOfflineFirstDate![indexPath.row]
+//                vc?.responseObj = self.responseObj
+            } else {
+                vc?.programModel = self.isOfflineSecondDate![indexPath.row]
+//                vc?.responseObj = self.responseObj
+                
+            }
+            //        vc?.programObject = self.responseObj?.result?.programSelect![indexPath.row]
+            vc?.eventOffline = self.eventObjOffline
         }
-        //        vc?.programObject = self.responseObj?.result?.programSelect![indexPath.row]
-        vc?.eventObj = self.eventObj
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -366,6 +464,48 @@ extension SEProgrammVC: NIDropDownDelegate {
 }
 
 extension SEProgrammVC : SpeakerDetail {
+    func registerUserForProgram(cell: ProgrammCell, indexCheck: IndexPath) {
+//
+        let idOfUser = UserDefaults.standard.integer(forKey: "id")
+        let schedule_id : String?
+        let activity_date : String?
+
+        if isDay1Select == true {
+           schedule_id = self.isFirstDate![indexCheck.row].schedule_id
+            activity_date = self.isFirstDate![indexCheck.row].activity_date
+        } else {
+            schedule_id = self.isSecondDate![indexCheck.row].schedule_id
+            activity_date = self.isSecondDate![indexCheck.row].activity_date
+
+        }
+        let loginParam =  [ "user_id"            : "\(idOfUser)" ,
+                            "schedule_id"        :  schedule_id! ,
+                            "activity_date"      : activity_date!
+                          ] as [String : Any]
+        startAnimating(size, message: "", messageFont: nil , type: NVActivityIndicatorType(rawValue: 6), color:UIColor.white   , padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil , textColor: UIColor.white)
+        WebServiceManager.post(params:loginParam as Dictionary<String, AnyObject> , serviceName: REGISTERUSERPROGRAM, isLoaderShow: false, serviceType: "Login", modelType: UserResponse.self, success: { (response) in
+            self.stopAnimating()
+            let  responseObj = response as? UserResponse
+            if responseObj?.success == 1 {
+                self.showAlert(title: "SOT Event", message: (responseObj?.message!)!, controller: self)
+            }
+            
+            else
+            {
+                self.showAlert(title: "SOT Event", message: (responseObj?.message!)!, controller: self)
+                
+            }
+            
+            
+        }, fail: { (error) in
+            self.showAlert(title: "SOT Events", message:error.description  , controller: self)
+            self.stopAnimating()
+            
+        }, showHUD: true)
+
+        
+    }
+    
     
     func selectSpeaker(cell : ProgrammCell , indexCheck : IndexPath , participant : ParticipationObject) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SESpeakerProfile") as? SESpeakerProfile
@@ -383,5 +523,8 @@ extension SEProgrammVC : SpeakerDetail {
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }
+    
+    
+    
     
 }

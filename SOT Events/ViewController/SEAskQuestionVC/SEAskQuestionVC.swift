@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class SEAskQuestionVC: UIViewController {
+class SEAskQuestionVC: UIViewController , NVActivityIndicatorViewable {
     var index: Int?
     @IBOutlet weak var lblTitle: UILabel!
     var eventObj : EventObject?
@@ -16,11 +17,16 @@ class SEAskQuestionVC: UIViewController {
     
     @IBOutlet weak var txtWriteYourQuestion: UITextView!
     var programObject : ProgramsObject?
+  
+    let size = CGSize(width: 60, height: 60)
+    var responseObj: UserResponse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTitle.text = eventObj?.event_title
-        lblProgramTitle.text =  programObject?.activity_desc
+        lblProgramTitle.text =  programObject?.activity_title
+        txtWriteYourQuestion.placeholder = "Please write your question"
+
         // Do any additional setup after loading the view.
     }
 
@@ -30,10 +36,41 @@ class SEAskQuestionVC: UIViewController {
     }
     
     @IBAction func btnSubmit_Pressed(_ sender: UIButton) {
-//        https://ws.beams.beaconhouse.net/viiontech/sotevents/index.php/api/event_ask_question
-//    event_id
-//        question_title
-//        question_detail
+        
+        let userId = eventObj?.event_id
+        let loginParam =  [ "event_id"         : "\(userId!)" ,
+                            "question_title"   : lblProgramTitle.text! ,
+                            "question_detail"  : txtWriteYourQuestion.text!
+            
+            ] as [String : Any]
+        startAnimating(size, message: "", messageFont: nil , type: NVActivityIndicatorType(rawValue: 6), color:UIColor.white   , padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil , textColor: UIColor.white)
+        
+        
+        WebServiceManager.post(params:loginParam as Dictionary<String, AnyObject> , serviceName: ASKQUESTION, isLoaderShow: false, serviceType: "Login", modelType: UserResponse.self, success: { (response) in
+            self.stopAnimating()
+            
+            self.responseObj = response as? UserResponse
+            
+            if self.responseObj?.success == 1 {
+                self.showAlertViewWithTitle(title: "SOT Events", message: (self.responseObj?.message!)!, dismissCompletion: {
+                    self.navigationController?.popViewController(animated: true)
+                })
+//                txtWriteYourQuestion.placeholder = "Please write your question"
+
+            }
+            else
+            {
+                self.showAlert(title: "SOT Event", message: (self.responseObj?.message!)!, controller: self)
+                
+            }
+            
+            
+        }, fail: { (error) in
+            self.showAlert(title: "SOT Events", message:error.description  , controller: self)
+            self.stopAnimating()
+            
+        }, showHUD: true)
+        
     
     }
     

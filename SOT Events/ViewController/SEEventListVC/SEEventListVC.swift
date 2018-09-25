@@ -10,20 +10,31 @@ import UIKit
 import AlamofireObjectMapper
 import ObjectMapper
 import NVActivityIndicatorView
+import Alamofire
 
 class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
     @IBOutlet var tblView: UITableView!
     let size = CGSize(width: 60, height: 60)
     var responseObj: UserResponse?
+    var  thread : EventModel?
+    var arrayOfEvent : NSArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   tblView.register(UINib(nibName: "EventCell", bundle: nil), forCellReuseIdentifier: "EventCell")
-      
+        
+        if  Connectivity.isConnectedToInternet()  {
+            getTheEventOfUser()
+        } else {
+            arrayOfEvent = EventModel.fetchAll() as NSArray?
+            self.tblView.delegate = self
+            self.tblView.dataSource = self
+            self.tblView.reloadDataWithAutoSizingCellWorkAround()
+            
+
+        }
         tblView.tableFooterView = UIView()
         tblView.rowHeight = UITableViewAutomaticDimension
         tblView.estimatedRowHeight = UITableViewAutomaticDimension
-        getTheEventOfUser()
     }
 
     
@@ -31,8 +42,10 @@ class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
     
     func getTheEventOfUser(){
     
-        let userId = localUserData.user_id
-        let loginParam =  [ "user_id"         : "\(userId!)"
+//        let userId = localUserData.user_id
+        let idOfUsers = UserDefaults.standard.string(forKey: "id")
+
+        let loginParam =  [ "user_id"         : "\(idOfUsers!)"
             
             ] as [String : Any]
         startAnimating(size, message: "", messageFont: nil , type: NVActivityIndicatorType(rawValue: 6), color:UIColor.white   , padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil , textColor: UIColor.white)
@@ -44,6 +57,8 @@ class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
             self.responseObj = response as? UserResponse
             
             if self.responseObj?.success == 1 {
+                
+                self.storeEventOffline(event: self.responseObj!)
                 self.tblView.delegate = self
                 self.tblView.dataSource = self
                 self.tblView.reloadDataWithAutoSizingCellWorkAround()
@@ -62,6 +77,53 @@ class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
             
         }, showHUD: true)
         
+    }
+    
+    func storeEventOffline(event : UserResponse) {
+        
+
+        for (_ , obj) in (event.result?.event?.enumerated())! {
+            
+            arrayOfEvent = EventModel.fetchAll() as NSArray?
+            let resultPredicate = NSPredicate(format: "event_id == %@", obj.event_id!)
+            let arrayOfFilter = arrayOfEvent?.filtered(using: resultPredicate)
+            
+            if (arrayOfFilter?.count)! > 0 {
+                
+            } else {
+                thread = EventModel.create() as? EventModel
+                thread?.event_id = obj.event_id
+                thread?.event_title = obj.event_title
+                thread?.event_desc = obj.event_desc
+                thread?.event_category = obj.event_category
+                thread?.active = obj.active
+                thread?.start_date = obj.start_date
+                thread?.end_date = obj.end_date
+                thread?.display_date = obj.display_date
+                thread?.session_tagline = obj.session_tagline
+                thread?.speaker_tagline = obj.speaker_tagline
+                thread?.fullsteam_desc = obj.fullsteam_desc
+                if obj.location?.count != 0 {
+                    thread?.location_name = obj.location![0].location_name
+                    thread?.location_id = obj.location![0].location_id
+                    thread?.city_name = obj.location![0].city_name
+                } else {
+                    thread?.location_name = " "
+                    thread?.location_id = " "
+                    thread?.city_name = " "
+                }
+                
+                //            thread?.location_id = obj.location![0].location_id
+                //            thread?.city_name = obj.location![0].city_name
+                
+                EventModel.save()
+            }
+           
+
+
+        }
+
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,46 +147,91 @@ class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
 extension SEEventListVC : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var numOfSections: Int = 0
-        if  self.responseObj?.result?.event?.isEmpty == false {
-            numOfSections = 1
-            tblView.backgroundView = nil
-        }
-        else {
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tblView.bounds.size.width, height: tblView.bounds.size.height))
-            noDataLabel.numberOfLines = 10
-            if let aSize = UIFont(name: "Axiforma-Book", size: 14) {
-                noDataLabel.font = aSize
+        if Connectivity.isConnectedToInternet() {
+            if  self.responseObj?.result?.event?.isEmpty == false {
+                numOfSections = 1
+                tblView.backgroundView = nil
             }
-            noDataLabel.text = "There are currently no data."
-            noDataLabel.textColor = UIColor(red: 119.0 / 255.0, green: 119.0 / 255.0, blue: 119.0 / 255.0, alpha: 1.0)
-            noDataLabel.textAlignment = .center
-            tblView.backgroundView = noDataLabel
-            tblView.separatorStyle = .none
+            else {
+                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tblView.bounds.size.width, height: tblView.bounds.size.height))
+                noDataLabel.numberOfLines = 10
+                if let aSize = UIFont(name: "Axiforma-Book", size: 14) {
+                    noDataLabel.font = aSize
+                }
+                noDataLabel.text = "There are currently no data."
+                noDataLabel.textColor = UIColor(red: 119.0 / 255.0, green: 119.0 / 255.0, blue: 119.0 / 255.0, alpha: 1.0)
+                noDataLabel.textAlignment = .center
+                tblView.backgroundView = noDataLabel
+                tblView.separatorStyle = .none
+            }
+            return numOfSections
+        } else {
+            if  self.arrayOfEvent?.count != 0 {
+                numOfSections = 1
+                tblView.backgroundView = nil
+            }
+            else {
+                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tblView.bounds.size.width, height: tblView.bounds.size.height))
+                noDataLabel.numberOfLines = 10
+                if let aSize = UIFont(name: "Axiforma-Book", size: 14) {
+                    noDataLabel.font = aSize
+                }
+                noDataLabel.text = "There are currently no data."
+                noDataLabel.textColor = UIColor(red: 119.0 / 255.0, green: 119.0 / 255.0, blue: 119.0 / 255.0, alpha: 1.0)
+                noDataLabel.textAlignment = .center
+                tblView.backgroundView = noDataLabel
+                tblView.separatorStyle = .none
+            }
+            return numOfSections
         }
-        return numOfSections
+     
 //            return 1
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return (self.responseObj?.result?.event?.count)!
+        if Connectivity.isConnectedToInternet() {
+            return (self.responseObj?.result?.event?.count)!
+
+        } else {
+            return (arrayOfEvent?.count)!
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell
+        
+        if Connectivity.isConnectedToInternet() {
+            cell?.lblEventName.text = self.responseObj?.result?.event![indexPath.row].event_title
+            cell?.lblTitleOfEvent.text = self.responseObj?.result?.event![indexPath.row].event_title
+            if self.responseObj?.result?.event![indexPath.row].location?.count == 0 {
+                cell?.lblAddress.text = " "
+            } else {
+                let locationName = self.responseObj?.result?.event![indexPath.row].location![0].location_name
+                let cityName = self.responseObj?.result?.event![indexPath.row].location![0].city_name
+                cell?.lblAddress.text = "\(locationName!) \(cityName!)"
+            }
+            
+            cell?.lblEventDate.text = self.responseObj?.result?.event![indexPath.row].display_date
 
-        cell?.lblEventName.text = self.responseObj?.result?.event![indexPath.row].event_title
-        cell?.lblTitleOfEvent.text = self.responseObj?.result?.event![indexPath.row].event_title
-        if self.responseObj?.result?.event![indexPath.row].location?.count == 0 {
-            cell?.lblAddress.text = " "
         } else {
-            let locationName = self.responseObj?.result?.event![indexPath.row].location![0].location_name
-            let cityName = self.responseObj?.result?.event![indexPath.row].location![0].city_name
+            let schoolEvent = self.arrayOfEvent![indexPath.row] as? EventModel
+          
+            cell?.lblEventName.text = schoolEvent?.event_title
+            cell?.lblTitleOfEvent.text = schoolEvent?.event_title
+            if self.responseObj?.result?.event![indexPath.row].location?.count == 0 {
+                cell?.lblAddress.text = " "
+            } else {
+              
+            }
+            
+            let locationName = schoolEvent?.location_name
+            let cityName = schoolEvent?.city_name
             cell?.lblAddress.text = "\(locationName!) \(cityName!)"
+            
+            cell?.lblEventDate.text = schoolEvent?.display_date
         }
-      
-        cell?.lblEventDate.text = self.responseObj?.result?.event![indexPath.row].display_date
 
         
         
@@ -134,7 +241,12 @@ extension SEEventListVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SEEventDetailVC") as? SEEventDetailVC
-        vc?.eventObj = self.responseObj?.result?.event![indexPath.row]
+        if Connectivity.isConnectedToInternet() {
+            vc?.eventObj = self.responseObj?.result?.event![indexPath.row]
+
+        } else {
+            vc?.eventOffline = self.arrayOfEvent![indexPath.row] as! EventModel
+        }
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

@@ -22,8 +22,17 @@ class SELoginVC: UIViewController   , NVActivityIndicatorViewable{
         super.viewDidLoad()
         txtEmail.setLeftPaddingPoints(5)
         txtPass.setLeftPaddingPoints(5)
-        
-        txtEmail.text = "ahmadyar@gmail.com"
+        let idOfUser = UserDefaults.standard.integer(forKey: "id")
+//        let idOfUsers = UserDefaults.standard.string(forKey: "id")
+
+        if idOfUser == 0  {
+
+        } else {
+            WAShareHelper.goToHomeController(vcIdentifier: "SEEventListVC", storyboardName: "Home", navController: self.navigationController!, leftMenuIdentifier: "SELeftSieMenuVC")
+
+        }
+
+        txtEmail.text = "ahmaddurranitrg@gmail.com"
         txtPass.text  = "123456789"
         
         // Do any additional setup after loading the view.
@@ -33,6 +42,13 @@ class SELoginVC: UIViewController   , NVActivityIndicatorViewable{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
+    
     
     @IBAction func btnSignIn_Pressed(_ sender: UIButton) {
       
@@ -48,14 +64,23 @@ class SELoginVC: UIViewController   , NVActivityIndicatorViewable{
             self.stopAnimating()
 
             let responseObj = response as! UserResponse
-//            var userDefaults = UserDefaults.standard
-//
-//            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: responseObj)
-//            userDefaults.set(encodedData, forKey: "teams")
-//            userDefaults.synchronize()
 
             if responseObj.success == 1 {
                 localUserData = responseObj.result?.userInfo
+                UserDefaults.standard.set(self.txtEmail.text! , forKey: "email")
+                UserDefaults.standard.set(self.txtPass.text! , forKey: "password")
+                UserDefaults.standard.set(localUserData.user_id , forKey: "id")
+                UserDefaults.standard.set(localUserData.participant_id , forKey: "participant_id")
+                UserDefaults.standard.set(localUserData.first_name , forKey: "first_name")
+                UserDefaults.standard.set(localUserData.last_name , forKey: "last_name")
+                UserDefaults.standard.set(localUserData.date_of_birth , forKey: "date_of_birth")
+                UserDefaults.standard.set(localUserData.phone , forKey: "phone")
+                UserDefaults.standard.set(localUserData.image , forKey: "image")
+                UserDefaults.standard.set(localUserData.qrcode , forKey: "qrcode")
+                UserDefaults.standard.set(localUserData.gender , forKey: "gender")
+
+                
+                
                 WAShareHelper.goToHomeController(vcIdentifier: "SEEventListVC", storyboardName: "Home", navController: self.navigationController!, leftMenuIdentifier: "SELeftSieMenuVC")
 
 
@@ -78,11 +103,11 @@ class SELoginVC: UIViewController   , NVActivityIndicatorViewable{
     
     
     @IBAction func btnFacebook_Pressed(_ sender: UIButton) {
-        let facebookMangager = SocialMediaManager()
-        facebookMangager.facebookSignup(self)
-        facebookMangager.successBlock = { (response) -> Void in
-            self.signupWebservice(response as! Dictionary)
-        }
+    //    let facebookMangager = SocialMediaManager()
+     //   facebookMangager.facebookSignup(self)
+      //  facebookMangager.successBlock = { (response) -> Void in
+        //    self.signupWebservice(response as! Dictionary)
+        //}
     }
     
     func signupWebservice(_ params: Dictionary<String, String>) {
