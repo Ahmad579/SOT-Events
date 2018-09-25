@@ -1430,6 +1430,9 @@
 =======
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+<<<<<<< HEAD
+>>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
+=======
 >>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SOT Events/Info.plist";
@@ -1440,9 +1443,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.beaconhouse.sotevents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 <<<<<<< HEAD
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "9285e145-60d1-4226-9e14-f0ea96eb9366";
 				PROVISIONING_PROFILE_SPECIFIER = SOT_DEVEL;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
+=======
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
+>>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
 =======
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
 >>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
@@ -1464,6 +1471,9 @@
 =======
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+<<<<<<< HEAD
+>>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
+=======
 >>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SOT Events/Info.plist";
@@ -1474,9 +1484,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.beaconhouse.sotevents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 <<<<<<< HEAD
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "9285e145-60d1-4226-9e14-f0ea96eb9366";
 				PROVISIONING_PROFILE_SPECIFIER = SOT_DEVEL;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
+=======
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
+>>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
 =======
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
 >>>>>>> 73e10b24b51e49a10f300a9fbf15c15a34304b3e
