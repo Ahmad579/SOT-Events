@@ -16,6 +16,7 @@ import UserNotifications
 
 class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenterDelegate {
 
+    
     var window: UIWindow?
 
     var isSideMenu  : Bool?
