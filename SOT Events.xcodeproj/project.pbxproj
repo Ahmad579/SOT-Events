@@ -43,6 +43,7 @@
 		E2199C82214124A20046908C /* EventAppVersionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2199C80214124A20046908C /* EventAppVersionCell.xib */; };
 		E2199C84214163740046908C /* KGRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2199C83214163740046908C /* KGRadioButton.swift */; };
 		E2199C872141684B0046908C /* SESignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2199C862141684B0046908C /* SESignUpVC.swift */; };
+		E21FA9D8215A67890058A748 /* splashLoad.png in Resources */ = {isa = PBXBuildFile; fileRef = E21FA9D7215A67880058A748 /* splashLoad.png */; };
 		E221ED06214313D1008040BB /* SEAskQuestionMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221ED05214313D1008040BB /* SEAskQuestionMainVC.swift */; };
 		E221ED08214313F2008040BB /* SEInformationDeskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221ED07214313F2008040BB /* SEInformationDeskVC.swift */; };
 		E221ED0A21431405008040BB /* SEAskQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221ED0921431405008040BB /* SEAskQuestionVC.swift */; };
@@ -203,6 +204,7 @@
 		E2199C80214124A20046908C /* EventAppVersionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventAppVersionCell.xib; sourceTree = "<group>"; };
 		E2199C83214163740046908C /* KGRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KGRadioButton.swift; sourceTree = "<group>"; };
 		E2199C862141684B0046908C /* SESignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SESignUpVC.swift; sourceTree = "<group>"; };
+		E21FA9D7215A67880058A748 /* splashLoad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashLoad.png; sourceTree = "<group>"; };
 		E221ED05214313D1008040BB /* SEAskQuestionMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEAskQuestionMainVC.swift; sourceTree = "<group>"; };
 		E221ED07214313F2008040BB /* SEInformationDeskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEInformationDeskVC.swift; sourceTree = "<group>"; };
 		E221ED0921431405008040BB /* SEAskQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEAskQuestionVC.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 		E2D7FEAE21406F9F00D68831 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E21FA9D7215A67880058A748 /* splashLoad.png */,
 				99247515215A62500089D6A1 /* Model.xcdatamodeld */,
 				99247513215A5EA70089D6A1 /* PAStorageHelper.h */,
 				99247512215A5EA70089D6A1 /* PAStorageHelper.m */,
@@ -957,6 +960,7 @@
 				E2D7FF0F21406F9F00D68831 /* Poppins-ExtraLight.otf in Resources */,
 				E2D7FF1E21406F9F00D68831 /* Poppins-ExtraBold.otf in Resources */,
 				E2D7FF2B21406F9F00D68831 /* Info.plist in Resources */,
+				E21FA9D8215A67890058A748 /* splashLoad.png in Resources */,
 				E2495C3A214EC6AA007A1924 /* Splas.jpeg in Resources */,
 				E2D7FF0D21406F9F00D68831 /* Poppins-SemiBoldItalic.otf in Resources */,
 				E2D7FF0421406F9F00D68831 /* Img_bg.png in Resources */,
@@ -1421,7 +1425,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trg.SOT-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1442,7 +1446,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trg.SOT-Events";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/hafizaziz/Desktop/Aziz Data/SOT/Resource/SOT Events-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
