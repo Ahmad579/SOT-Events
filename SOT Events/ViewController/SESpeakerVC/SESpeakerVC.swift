@@ -171,7 +171,10 @@ class SESpeakerVC: UIViewController, NVActivityIndicatorViewable {
         }, origin: sender)
         
     }
-
+    @IBAction func btnSideMenu_Pressed(_ sender: UIButton) {
+        self.revealController.show(self.revealController.leftViewController)
+        
+    }
 
 }
 

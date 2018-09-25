@@ -14,7 +14,9 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var lblTitleOfEvent: UILabel!
     @IBOutlet weak var lblEventDate: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
-
+//    @IBOutlet weak var viewOfEvent: UIView!
+    @IBOutlet weak var viewOfBg: CardView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

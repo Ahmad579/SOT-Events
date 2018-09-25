@@ -72,6 +72,14 @@ class SEHappeningVC: UIViewController  , NVActivityIndicatorViewable {
         
     }
     
+    @IBAction func btnSideMenu_Pressed(_ sender: UIButton) {
+        self.revealController.show(self.revealController.leftViewController)
+        
+    }
+//    @IBAction func btnSideMenu_Pressed(_ sender: UIButton) {
+//        self.revealController.show(self.revealController.leftViewController)
+//
+//    }
 
 }
 
@@ -106,16 +114,10 @@ extension SEHappeningVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HappeningCell", for: indexPath) as? HappeningCell
-        
-//        @IBOutlet weak var lblTitleOfHappening: UILabel!
-//        @IBOutlet weak var lblDate: UILabel!
-//        @IBOutlet weak var lblLink: UILabel!
         let index = indexPath.row + 1
         cell?.lblTitleOfHappening.text = "Happening\(index)"
         cell?.lblDate.text = self.responseObj?.result?.happeningList![indexPath.row].date_filter
         cell?.lblLink.text = self.responseObj?.result?.happeningList![indexPath.row].url
-        
-        
         return cell!
         
     }

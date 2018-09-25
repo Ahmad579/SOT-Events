@@ -290,6 +290,11 @@ class SEProgrammVC: UIViewController  , NVActivityIndicatorViewable {
     @IBAction func btnBAck_Pressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func btnSideMenu_Pressed(_ sender: UIButton) {
+        self.revealController.show(self.revealController.leftViewController)
+        
+    }
 }
 
 extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {

@@ -96,6 +96,13 @@ class SEEventDetailVC: UIViewController , NVActivityIndicatorViewable {
         
     }
     
+    @IBAction func btnSideMenu_Pressed(_ sender: UIButton) {
+        self.revealController.show(self.revealController.leftViewController)
+        
+    }
+
+    
+    
     func getTheProgramOfUser(){
         let idOfUser = UserDefaults.standard.integer(forKey: "id")
 

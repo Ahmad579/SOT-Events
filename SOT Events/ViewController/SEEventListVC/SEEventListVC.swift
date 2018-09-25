@@ -16,12 +16,14 @@ class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
     @IBOutlet var tblView: UITableView!
     let size = CGSize(width: 60, height: 60)
     var responseObj: UserResponse?
+    var eventList: [EventObject]?
+    var isActiveEvent = 0
     var  thread : EventModel?
     var arrayOfEvent : NSArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        eventList = []
         if  Connectivity.isConnectedToInternet()  {
             getTheEventOfUser()
         } else {
@@ -59,6 +61,17 @@ class SEEventListVC: UIViewController , NVActivityIndicatorViewable{
             if self.responseObj?.success == 1 {
                 
                 self.storeEventOffline(event: self.responseObj!)
+                for (index , eventObj) in (self.responseObj?.result?.event?.enumerated())! {
+                    if eventObj.active == "Y" {
+                        self.eventList?.insert(eventObj, at: 0)
+                    } else {
+//                        self.isActiveEvent += 0
+                        self.eventList?.append(eventObj)
+                    }
+                    
+                }
+                
+                
                 self.tblView.delegate = self
                 self.tblView.dataSource = self
                 self.tblView.reloadDataWithAutoSizingCellWorkAround()
@@ -148,7 +161,7 @@ extension SEEventListVC : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var numOfSections: Int = 0
         if Connectivity.isConnectedToInternet() {
-            if  self.responseObj?.result?.event?.isEmpty == false {
+            if  self.eventList?.isEmpty == false {
                 numOfSections = 1
                 tblView.backgroundView = nil
             }
@@ -192,7 +205,7 @@ extension SEEventListVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if Connectivity.isConnectedToInternet() {
-            return (self.responseObj?.result?.event?.count)!
+            return (eventList?.count)!
 
         } else {
             return (arrayOfEvent?.count)!
@@ -203,13 +216,29 @@ extension SEEventListVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell
         
         if Connectivity.isConnectedToInternet() {
-            cell?.lblEventName.text = self.responseObj?.result?.event![indexPath.row].event_title
-            cell?.lblTitleOfEvent.text = self.responseObj?.result?.event![indexPath.row].event_title
-            if self.responseObj?.result?.event![indexPath.row].location?.count == 0 {
+            if indexPath.row == 0 {
+                cell?.viewOfBg.backgroundColor = UIColor(red: 244/255.0, green: 146/255.0, blue: 46/255.0, alpha: 1.0)
+                cell?.lblEventName.textColor = UIColor.white
+                cell?.lblTitleOfEvent.textColor = UIColor.white
+                cell?.lblAddress.textColor = UIColor.white
+                cell?.lblEventDate.textColor = UIColor.white
+
+            } else {
+                cell?.viewOfBg.backgroundColor = UIColor.white
+                cell?.lblEventName.textColor = UIColor(red: 244/255.0, green: 146/255.0, blue: 46/255.0, alpha: 1.0)
+                cell?.lblTitleOfEvent.textColor = UIColor(red: 126/255.0, green: 126/255.0, blue: 126/255.0, alpha: 1.0)
+                cell?.lblAddress.textColor = UIColor(red: 126/255.0, green: 126/255.0, blue: 126/255.0, alpha: 1.0)
+                cell?.lblEventDate.textColor = UIColor(red: 126/255.0, green: 126/255.0, blue: 126/255.0, alpha: 1.0)
+
+            }
+            
+            cell?.lblEventName.text = eventList![indexPath.row].event_title
+            cell?.lblTitleOfEvent.text = eventList![indexPath.row].event_title
+            if eventList![indexPath.row].location?.count == 0 {
                 cell?.lblAddress.text = " "
             } else {
-                let locationName = self.responseObj?.result?.event![indexPath.row].location![0].location_name
-                let cityName = self.responseObj?.result?.event![indexPath.row].location![0].city_name
+                let locationName = eventList![indexPath.row].location![0].location_name
+                let cityName = eventList![indexPath.row].location![0].city_name
                 cell?.lblAddress.text = "\(locationName!) \(cityName!)"
             }
             
@@ -242,7 +271,7 @@ extension SEEventListVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SEEventDetailVC") as? SEEventDetailVC
         if Connectivity.isConnectedToInternet() {
-            vc?.eventObj = self.responseObj?.result?.event![indexPath.row]
+            vc?.eventObj = eventList![indexPath.row]
 
         } else {
             vc?.eventOffline = self.arrayOfEvent![indexPath.row] as! EventModel

@@ -50,7 +50,12 @@ class SESessionDetailVC: UIViewController {
     @IBAction func btnBAck_Pressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
+    
+    @IBAction func btnSideMenu_Pressed(_ sender: UIButton) {
+        self.revealController.show(self.revealController.leftViewController)
+        
+    }
 }
 
 extension SESessionDetailVC : UITableViewDelegate , UITableViewDataSource {
