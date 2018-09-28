@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
     }
     
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.sharedManager().enable = true
         UIApplication.shared.statusBarStyle = .lightContent
@@ -84,7 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
                 options: authOptions,
                 completionHandler: {_, _ in })
             // For iOS 10 data message (sent via FCM
-            Messaging.messaging().remoteMessageDelegate = self
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -93,7 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
         
         application.registerForRemoteNotifications()
         
-        Messaging.messaging().remoteMessageDelegate = self
 
         
         FirebaseApp.configure()

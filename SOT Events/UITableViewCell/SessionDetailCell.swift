@@ -10,6 +10,8 @@ import UIKit
 protocol ReadMore {
     func readMoreButtonPressed(cell : SessionDetailCell , index : IndexPath)
     func AskQuestion(cell : SessionDetailCell , index : IndexPath)
+    func evaluationOfProgram(cell: SessionDetailCell, index: IndexPath)
+    func PollOfProgram(cell: SessionDetailCell, index: IndexPath)
 
 }
 
@@ -50,5 +52,18 @@ class SessionDetailCell: UITableViewCell {
       
     }
     
+    @IBAction func btnEvaluation_Pressed(_ sender: UIButton) {
+        //        sender.isSelected = !sender.isSelected
+        self.delegae?.evaluationOfProgram(cell: self, index: index!)
+        
+    }
+    
+    @IBAction func btnPoll_Pressed(_ sender: UIButton) {
+        //        sender.isSelected = !sender.isSelected
+        self.delegae?.PollOfProgram(cell: self, index: index!)
+        
+    }
+    
+
     
 }

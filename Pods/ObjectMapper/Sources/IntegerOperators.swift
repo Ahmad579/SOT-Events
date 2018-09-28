@@ -34,6 +34,8 @@ public func <- <T: SignedInteger>(left: inout T?, right: Map) {
 }
 
 /// ImplicitlyUnwrappedOptional SignedInteger mapping
+#if swift(>=4.1)
+#else
 public func <- <T: SignedInteger>(left: inout T!, right: Map) {
     switch right.mappingType {
     case .fromJSON where right.isKeyPresent:
@@ -44,6 +46,7 @@ public func <- <T: SignedInteger>(left: inout T!, right: Map) {
     default: ()
     }
 }
+#endif
 
 
 // MARK: - Unsigned Integer
@@ -73,6 +76,8 @@ public func <- <T: UnsignedInteger>(left: inout T?, right: Map) {
 }
 
 /// ImplicitlyUnwrappedOptional UnsignedInteger mapping
+#if swift(>=4.1)
+#else
 public func <- <T: UnsignedInteger>(left: inout T!, right: Map) {
     switch right.mappingType {
     case .fromJSON where right.isKeyPresent:
@@ -83,6 +88,7 @@ public func <- <T: UnsignedInteger>(left: inout T!, right: Map) {
     default: ()
     }
 }
+#endif
 
 // MARK: - Casting Utils
 /// Convert any value to `SignedInteger`.

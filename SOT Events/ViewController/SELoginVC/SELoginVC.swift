@@ -61,11 +61,13 @@ class SELoginVC: UIViewController   , NVActivityIndicatorViewable{
 
 
         WebServiceManager.post(params:loginParam as Dictionary<String, AnyObject> , serviceName: LOGIN, isLoaderShow: false, serviceType: "Login", modelType: UserResponse.self, success: { (response) in
-            self.stopAnimating()
-
+            
             let responseObj = response as! UserResponse
-
+            
+//
             if responseObj.success == 1 {
+                
+                
                 localUserData = responseObj.result?.userInfo
                 UserDefaults.standard.set(self.txtEmail.text! , forKey: "email")
                 UserDefaults.standard.set(self.txtPass.text! , forKey: "password")
@@ -78,12 +80,34 @@ class SELoginVC: UIViewController   , NVActivityIndicatorViewable{
                 UserDefaults.standard.set(localUserData.image , forKey: "image")
                 UserDefaults.standard.set(localUserData.qrcode , forKey: "qrcode")
                 UserDefaults.standard.set(localUserData.gender , forKey: "gender")
-
+                let updateTokenParam =  [ "user_id"           : localUserData.user_id!,
+                                    "manufacture"       : "iOS" ,
+                                    "token"             : "dsddf",
+                                    "manufacturer"      : "Apple" ,
+                                    "model"             : "Apple" ,
+                                    "platform"          : "iOS" ,
+                                    "serial"            : "no serial" ,
+                                    "uuid"              : "iOS_id" ,
+                                    "version"           : "12.0" ,
+                                    "status"            : "A"
+                    
+                    ] as [String : Any]
                 
                 
-                WAShareHelper.goToHomeController(vcIdentifier: "SEEventListVC", storyboardName: "Home", navController: self.navigationController!, leftMenuIdentifier: "SELeftSieMenuVC")
+                WebServiceManager.post(params: updateTokenParam as Dictionary<String, AnyObject> , serviceName: INSERTUSERDEVICE, isLoaderShow: false, serviceType: "insert_user_device", modelType:  UserResponse.self, success: { (response) in
+                    self.stopAnimating()
 
+                    if responseObj.success == 1 {
+                        WAShareHelper.goToHomeController(vcIdentifier: "SEEventListVC", storyboardName: "Home", navController: self.navigationController!, leftMenuIdentifier: "SELeftSieMenuVC")
 
+                    } else {
+                        self.showAlert(title: "SOT Event", message: responseObj.message!, controller: self)
+                    }
+
+                    
+                }, fail: { (error) in
+                    
+                }, showHUD: true)
             }
             else
             {

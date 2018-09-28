@@ -19,7 +19,8 @@ class ProgrammCell: UITableViewCell {
     @IBOutlet weak var lblActivity_desc: UILabel!
     @IBOutlet weak var lblDisplay_date: UILabel!
     @IBOutlet weak var lblVenue_title: UILabel!
-    
+    @IBOutlet weak var btnRegister: UIButton!
+
     @IBOutlet weak var collectionViewCell: UICollectionView!
     var participation : [ParticipationObject]?
     var participationOffline : [Participation]?
@@ -75,7 +76,6 @@ extension ProgrammCell : UICollectionViewDelegate ,UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let obj : ParticipationObject
         if Connectivity.isConnectedToInternet() {
             let obj = self.participation![indexPath.row]
             self.delegate?.selectSpeaker(cell: self, indexCheck: indexPath , participant: obj)

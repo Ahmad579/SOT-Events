@@ -309,12 +309,10 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            
-            
+
             if isDay1Select == true {
                 if Connectivity.isConnectedToInternet() {
                     return (isFirstDate?.count)!
-
                 } else {
                     return (isOfflineFirstDate?.count)!
                 }
@@ -352,6 +350,14 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
                     cell?.lblVenue_title.text = self.isFirstDate![indexPath.row].venue_title
                     cell?.delegate = self
                     cell?.index = indexPath
+                    let idOfUser = UserDefaults.standard.string(forKey: "id")
+                    
+                    if self.isFirstDate![indexPath.row].user_id == idOfUser {
+                        cell?.btnRegister.isSelected = true
+                    } else {
+                        cell?.btnRegister.isSelected = false
+
+                    }
                     cell?.participation = self.isFirstDate![indexPath.row].participant
                     cell?.collectionViewCell.reloadData()
                 }else {
@@ -361,7 +367,14 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
                     cell?.lblVenue_title.text = self.isSecondDate![indexPath.row].venue_title
                     cell?.delegate = self
                     cell?.index = indexPath
-                    
+                    let idOfUser = UserDefaults.standard.string(forKey: "id")
+
+                    if self.isSecondDate![indexPath.row].user_id == idOfUser {
+                        cell?.btnRegister.isSelected = true
+                    } else {
+                        cell?.btnRegister.isSelected = false
+                        
+                    }
                     cell?.participation = self.isSecondDate![indexPath.row].participant
                     cell?.collectionViewCell.reloadData()
                 }
@@ -376,6 +389,14 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
                     cell?.delegate = self
                     cell?.index = indexPath
                     let orderedPlayers = objOfDay1.participantInProgram?.allObjects as? [Participation]
+                    let idOfUser = UserDefaults.standard.string(forKey: "id")
+
+                    if objOfDay1.user_id == idOfUser {
+                        cell?.btnRegister.isSelected = true
+                    } else {
+                        cell?.btnRegister.isSelected = false
+                        
+                    }
                     cell?.participationOffline = orderedPlayers
                     cell?.collectionViewCell.reloadData()
                 }else {
@@ -387,7 +408,14 @@ extension SEProgrammVC : UITableViewDelegate , UITableViewDataSource {
                     cell?.lblVenue_title.text = objOfDay2.venue_title
                     cell?.delegate = self
                     cell?.index = indexPath
-                  
+                    let idOfUser = UserDefaults.standard.string(forKey: "id")
+                    
+                    if objOfDay2.user_id == idOfUser {
+                        cell?.btnRegister.isSelected = true
+                    } else {
+                        cell?.btnRegister.isSelected = false
+                        
+                    }
                     let orderedPlayers = objOfDay2.participantInProgram?.allObjects as? [Participation]
                     cell?.participationOffline = orderedPlayers
 

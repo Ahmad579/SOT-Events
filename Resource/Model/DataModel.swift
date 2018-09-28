@@ -55,6 +55,7 @@ class UserResult : Mappable , NSCoding {
     var faqEvent            : [EventFaqObject]?
     var happeningList            : [HappeningListObject]?
     var userMessage              : UserMessageObject?
+    
     required init?(map: Map){
         
         
@@ -92,7 +93,6 @@ class UserResult : Mappable , NSCoding {
         faqEvent        <- map["event_faqs"]
         happeningList  <- map["happenings"]
         userMessage    <- map["user_messages"]
-        
 
     }
 }
@@ -700,175 +700,52 @@ class MessageObject : Mappable  {
     }
 }
 
-class ClubInfo : Mappable {
+class Session   :   Mappable {
     
-    var information: String?
-    var contact_number: String?
-    var website: String?
-    var email: String?
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        information <- map["information"]
-        contact_number <- map["contact_number"]
-        email <- map["email"]
-        website <- map["website"]
-        
-        
-        
-    }
-}
-
-class ClubTeam : Mappable {
-    
-    var title: String?
-    var designation: String?
+    var success                              :       Int?
+    var message                              :       String?
+    var result                               :       SessionEvaluation?
     
     
     required init?(map: Map){
         
     }
     
+   
     func mapping(map: Map) {
-        title <- map["title"]
-        designation <- map["designation"]
-        
-        
-        
+        success <- map["success"]
+        message <- map["message"]
+        result    <- map["result"]
     }
 }
 
-class ClubPhoto : Mappable {
+class SessionEvaluation : Mappable  {
     
-    var image: String?
-    
-    
+    var sessionEvaluation        : SessionEvaluationObject?
+    var pollEvaluation            : SessionEvaluationObject?
+
+ 
     required init?(map: Map){
         
     }
     
+   
+    
     func mapping(map: Map) {
-        image <- map["image"]
-        
-        
-        
-    }
-}
+       
+        sessionEvaluation <- map["session_evaluation"]
+        pollEvaluation <- map["program_polls"]
 
-class ClubVideos : Mappable {
-    
-    var image: String?
-    var thumbNail : String?
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        image <- map["video"]
-        thumbNail <- map["thumbnail"]
-        
-        
-        
-    }
-}
-
-class ClubSocial : Mappable {
-    
-    var twitter: String?
-    var facebook: String?
-    var website: String?
-    var instagram: String?
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        twitter <- map["twitter"]
-        facebook <- map["facebook"]
-        website <- map["website"]
-        instagram <- map["instagram"]
-        
-        
-        
     }
 }
 
 
-
-
-class DealData : Mappable {
+class SessionEvaluationObject : Mappable {
     
-    var menuOfRestaurantOfDeal : RestaurantMenu?
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        menuOfRestaurantOfDeal <- map["menu"]
-    }
-}
-
-
-
-class ReceipeObject : Mappable {
-    
-    var id: Int?
-    var user_id: String?
-    var title: String?
-    var instructions: String?
-    var ingredients : Bool?
-    var time_to_cook : Bool?
-    var image_url : String?
-    var tags     : String?
-    var user                : UserInformation?
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        user_id <- map["user_id"]
-        title <- map["title"]
-        instructions <- map["instructions"]
-        ingredients <- map["ingredients"]
-        time_to_cook <- map["time_to_cook"]
-        image_url <- map["image_url"]
-        user <- map["user"]
-        tags <- map["tags"]
-        
-        
-        
-        
-    }
-}
-
-class UserOrder : Mappable {
-    
-    var id: Int?
-    var resturant_id: String?
-    var user_id: String?
-    var order_status: String?
-    var payment_date : String?
-    var order_date : String?
-    var sub_total : String?
-    var coupon_code     : String?
-    var discount     : String?
-    var delivery_charges     : String?
-    var tax     : String?
-    var total_payment     : String?
-    var address     : String?
-    var reservation     : String?
-    var totalperson     : String?
+    var message: String?
+    var sessionQuestionObject : SessionEvaluationQuestionObject?
+    var pollQuestionObject    : PollQuestionObject?
+    var status: String?
 
     
     required init?(map: Map){
@@ -876,42 +753,25 @@ class UserOrder : Mappable {
     }
     
     func mapping(map: Map) {
-        id <- map["id"]
-        resturant_id <- map["resturant_id"]
-        user_id <- map["user_id"]
-        order_status <- map["order_status"]
-        payment_date <- map["payment_date"]
-        order_date <- map["order_date"]
-        sub_total <- map["sub_total"]
-        coupon_code <- map["coupon_code"]
-        discount <- map["discount"]
-        tax <- map["tax"]
-        total_payment <- map["total_payment"]
-        address <- map["address"]
-        reservation <- map["reservation"]
-        totalperson <- map["totalperson"]
+        
+        status <- map["status"]
+        message <- map["message"]
+        sessionQuestionObject <- map["0"]
+        pollQuestionObject    <- map["0"]
 
-        
-        
-        
-        
     }
 }
 
-class OrderListObject : Mappable {
+class SessionEvaluationQuestionObject : Mappable {
     
-    var id: Int?
-    var coupon_code: String?
-    var order_date: String?
-    var order_status: String?
-    var payment_date : Bool?
-    var reservation : Bool?
-    var resturant_id : String?
-    var total_payment     : String?
-    var user_id     : String?
-    var restaurent                       :  AllRestaurantList?
-    var userInfo                         :  UserInformation?
-    var items                            :  [RestaurantMenu]?
+    var event_id: String?
+    var message: String?
+    
+    var schedule_id: String?
+    var evaluation_id: String?
+    var evaluation_title: String?
+    var status: String?
+    var sessionQuestion : [SessionQuestion]?
     
     
     required init?(map: Map){
@@ -919,38 +779,68 @@ class OrderListObject : Mappable {
     }
     
     func mapping(map: Map) {
-        id <- map["id"]
-        coupon_code <- map["coupon_code"]
-        order_date <- map["order_date"]
-        order_status <- map["order_status"]
-        payment_date <- map["payment_date"]
-        reservation <- map["reservation"]
-        resturant_id <- map["resturant_id"]
-        total_payment <- map["total_payment"]
-        user_id <- map["user_id"]
-        restaurent <- map["resturant"]
-        items <- map["items"]
-
-
         
+        event_id <- map["event_id"]
+        schedule_id <- map["schedule_id"]
+        evaluation_id <- map["evaluation_id"]
+        evaluation_title <- map["evaluation_title"]
+        status <- map["status"]
+        message <- map["message"]
         
-        
+        sessionQuestion <- map["questions"]
     }
 }
 
-class DealList : Mappable {
+
+class SessionQuestion : Mappable {
     
-    var id: Int?
-    var resturant_id: String?
-    var deal_name: String?
-    var deal_type: String?
-    var deal_description : String?
-    var deal_price : String?
-    var image : String?
+    var question_id: String?
+    var question_desc: String?
+    var question_type: String?
+    var opt_img_type: String?
+    var opt_layout: String?
+    var option : [SessionQuestionOption]?
+    required init?(map: Map){
+        
+    }
     
-    var restaurent                       :   AllRestaurantList?
-    var userInfo                         :   UserInformation?
-    var dealItemList                     :   [DealItem]?
+    func mapping(map: Map) {
+        question_id <- map["question_id"]
+        question_desc <- map["question_desc"]
+        question_type <- map["question_type"]
+        opt_img_type <- map["opt_img_type"]
+        opt_layout <- map["opt_layout"]
+        option      <- map["options"]
+    }
+}
+
+class SessionQuestionOption : Mappable {
+    
+    var option_id: String?
+    var option_desc: String?
+    var icon_url: String?
+    required init?(map: Map){
+        
+    }
+    
+    func mapping(map: Map) {
+        option_id <- map["option_id"]
+        option_desc <- map["option_desc"]
+        icon_url <- map["icon_url"]
+    }
+}
+
+
+class PollQuestionObject : Mappable {
+    
+    var schedule_id: String?
+    var poll_id: String?
+    
+    var poll_name: String?
+    var poll_status: String?
+    var poll_code: String?
+    var status: String?
+    var sessionQuestion : [SessionQuestion]?
     
     
     required init?(map: Map){
@@ -958,254 +848,15 @@ class DealList : Mappable {
     }
     
     func mapping(map: Map) {
-        id <- map["id"]
-        resturant_id <- map["resturant_id"]
-        deal_name <- map["deal_name"]
-        deal_type <- map["deal_type"]
-        deal_description <- map["deal_description"]
-        deal_price <- map["deal_price"]
-        image <- map["image"]
-        restaurent <- map["resturant"]
-        userInfo <- map["customer"]
-        dealItemList <- map["deal_items"]
+        
+        schedule_id <- map["schedule_id"]
+        poll_id <- map["poll_id"]
+        poll_name <- map["poll_name"]
+        poll_status <- map["poll_status"]
+        poll_code <- map["poll_code"]
+        sessionQuestion <- map["questions"]
     }
 }
-
-class DealItem : Mappable {
-    
-    var id: Int?
-    var deal_id: String?
-    var menu_item_id: String?
-    var quantity: String?
-    var menu    : RestaurantMenu?
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        deal_id <- map["deal_id"]
-        menu_item_id <- map["menu_item_id"]
-        quantity <- map["quantity"]
-        menu <- map["menu"]
-    }
-}
-
-
-class AllRestaurantList : Mappable {
-    
-    
-    var id: Int?
-    var category_id: String?
-    var name: String?
-    var phone_no: String?
-    var location: String?
-    var latitude : String?
-    var longitude : String?
-    var image_url : String?
-    var do_delivery     : Int?
-    var about     : Int?
-    var opening_time : String?
-    var closing_time : String?
-
-    var distance : String?
-    var timings : String?
-
-    
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        category_id <- map["category_id"]
-        name    <- map["name"]
-        phone_no    <- map["phone_no"]
-        location    <- map["location"]
-        latitude    <- map["latitude"]
-        longitude    <- map["longitude"]
-        image_url    <- map["image_url"]
-        do_delivery    <- map["do_delivery"]
-        about    <- map["about"]
-        opening_time    <- map["opening_time"]
-        closing_time    <- map["closing_time"]
-        distance    <- map["distance"]
-        timings    <- map["timings"]
-
-
-    }
-}
-
-class RestaurantDetailObject : Mappable {
-    
-    var id: Int?
-    var category_id: String?
-    var resturant_id: String?
-    var slug: String?
-    var category_name: String?
-    var restaurentInfo : AllRestaurantList?
-    var menuOfRestaurant : [RestaurantMenu]?
-    var menu             : RestaurantMenu?
-
-    
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        category_id <- map["category_id"]
-        resturant_id    <- map["resturant_id"]
-        slug    <- map["slug"]
-        category_name <- map["category_name"]
-        restaurentInfo <- map["resturant"]
-        menuOfRestaurant <- map["menu"]
-        menu  <- map["menu"]
-        
-
-    }
-}
-
-
-class MenuCategory : Mappable {
-    
-    var id: Int?
-    var resturant_id: String?
-    var slug: String?
-    var category_name: String?
-    var menuOfRestaurant : [RestaurantMenu]?
-    
-    
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        resturant_id    <- map["resturant_id"]
-        slug    <- map["slug"]
-        category_name <- map["category_name"]
-        menuOfRestaurant <- map["menu"]
-        
-        
-    }
-}
-
-
-class RestaurantMenu : Mappable {
-    
-    var id: Int?
-    var menu_category_id: String?
-    var menu_item_id    : String?
-    var item_name: String?
-    var description: String?
-    var available: String?
-    var price: String?
-    var order_id : String?
-    var quantity : String?
-    var menuItem : MenuItem?
-    var menuCategory : RestaurantDetailObject?
-
-
-    
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        menu_category_id <- map["menu_category_id"]
-        menu_item_id     <- map["menu_item_id"]
-        item_name <- map["item_name"]
-        description <- map["description"]
-        available <- map["available"]
-        price <- map["price"]
-        order_id <- map["order_id"]
-        quantity <- map["quantity"]
-        menuCategory <- map["menu_category"]
-        menuItem <- map["menu_item"]
-
-    }
-}
-
-
-class MenuItem : Mappable {
-    
-    var id                  :       Int?
-    var menu_category_id              :       String?
-    var item_name              :       String?
-    var description              :       String?
-
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        menu_category_id <- map["menu_category_id"]
-        item_name <- map["item_name"]
-        description <- map["description"]
-
-    }
-}
-
-
-
-class UserProfileObject : Mappable {
-    
-    var image                  :       String?
-    var imageName              :       String?
-    
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        image <- map["image"]
-        imageName <- map["imagename"]
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-class UserData : Mappable {
-    
-    var user: UserInformation?
-    
-    
-    required init?(map: Map){
-        
-    }
-    
-    func mapping(map: Map) {
-        user <- map["user"]
-        
-    }
-    
-}
-
 
 
 

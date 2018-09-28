@@ -82,7 +82,7 @@ open class BeaconAdvertiseRequest: NSObject, Request {
 	
 	internal func dataToAdvertise() -> [String:AnyObject?] {
 		let data: [String:AnyObject?] = [
-			CBAdvertisementDataLocalNameKey : self.name as ImplicitlyUnwrappedOptional<AnyObject>,
+            CBAdvertisementDataLocalNameKey : self.name as Optional<AnyObject>,
 			CBAdvertisementDataManufacturerDataKey : self.region.peripheralData(withMeasuredPower: self.RSSIPower),
 			CBAdvertisementDataServiceUUIDsKey : self.UUID as Optional<AnyObject>]
 		return data

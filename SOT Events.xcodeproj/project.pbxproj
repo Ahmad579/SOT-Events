@@ -21,6 +21,7 @@
 		99247511215A5DCB0089D6A1 /* HappeningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99247510215A5DCB0089D6A1 /* HappeningCell.swift */; };
 		99247514215A5EA80089D6A1 /* PAStorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 99247512215A5EA70089D6A1 /* PAStorageHelper.m */; };
 		99247517215A62500089D6A1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99247515215A62500089D6A1 /* Model.xcdatamodeld */; };
+		E206A692215CB94C007D90ED /* SEPOllVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E206A691215CB94C007D90ED /* SEPOllVC.swift */; };
 		E218C115214252B9007B2F18 /* SessionDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E218C113214252B9007B2F18 /* SessionDetailCell.swift */; };
 		E218C116214252B9007B2F18 /* SessionDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E218C114214252B9007B2F18 /* SessionDetailCell.xib */; };
 		E218C1192142593B007B2F18 /* ParticipationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E218C1172142593B007B2F18 /* ParticipationListCell.swift */; };
@@ -67,6 +68,11 @@
 		E2C3FAE92141DED7004A0CB2 /* ProgrammCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3FAE82141DED7004A0CB2 /* ProgrammCell.swift */; };
 		E2C3FAEC2141E025004A0CB2 /* SEProgrammVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3FAEB2141E025004A0CB2 /* SEProgrammVC.swift */; };
 		E2C3FAEE2141E858004A0CB2 /* ParticipateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3FAED2141E858004A0CB2 /* ParticipateCell.swift */; };
+		E2D4B40C215BA5FA00C81F89 /* SEEvaluationHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B40A215BA5FA00C81F89 /* SEEvaluationHeaderCell.swift */; };
+		E2D4B40D215BA5FA00C81F89 /* SEEvaluationHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D4B40B215BA5FA00C81F89 /* SEEvaluationHeaderCell.xib */; };
+		E2D4B410215BA61700C81F89 /* SEOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B40E215BA61700C81F89 /* SEOptionCell.swift */; };
+		E2D4B411215BA61700C81F89 /* SEOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D4B40F215BA61700C81F89 /* SEOptionCell.xib */; };
+		E2D4B414215BB2AD00C81F89 /* SEEvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4B413215BB2AD00C81F89 /* SEEvaluationVC.swift */; };
 		E2D7FE8121406DF900D68831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D7FE8021406DF900D68831 /* AppDelegate.swift */; };
 		E2D7FE8621406DF900D68831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2D7FE8421406DF900D68831 /* Main.storyboard */; };
 		E2D7FE8821406DFB00D68831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2D7FE8721406DFB00D68831 /* Assets.xcassets */; };
@@ -182,6 +188,7 @@
 		C21D2F7411C3910E92C02240 /* Pods-SOT Events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SOT Events.release.xcconfig"; path = "Pods/Target Support Files/Pods-SOT Events/Pods-SOT Events.release.xcconfig"; sourceTree = "<group>"; };
 		CA991CF7D98A77CE9D931CA6 /* Pods-SOT EventsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SOT EventsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SOT EventsUITests/Pods-SOT EventsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D7C11B5B93455F5C17C7A701 /* Pods-SOT EventsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SOT EventsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SOT EventsTests/Pods-SOT EventsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E206A691215CB94C007D90ED /* SEPOllVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEPOllVC.swift; sourceTree = "<group>"; };
 		E218C113214252B9007B2F18 /* SessionDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailCell.swift; sourceTree = "<group>"; };
 		E218C114214252B9007B2F18 /* SessionDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionDetailCell.xib; sourceTree = "<group>"; };
 		E218C1172142593B007B2F18 /* ParticipationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListCell.swift; sourceTree = "<group>"; };
@@ -229,6 +236,11 @@
 		E2C3FAE82141DED7004A0CB2 /* ProgrammCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammCell.swift; sourceTree = "<group>"; };
 		E2C3FAEB2141E025004A0CB2 /* SEProgrammVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEProgrammVC.swift; sourceTree = "<group>"; };
 		E2C3FAED2141E858004A0CB2 /* ParticipateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateCell.swift; sourceTree = "<group>"; };
+		E2D4B40A215BA5FA00C81F89 /* SEEvaluationHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEEvaluationHeaderCell.swift; sourceTree = "<group>"; };
+		E2D4B40B215BA5FA00C81F89 /* SEEvaluationHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEEvaluationHeaderCell.xib; sourceTree = "<group>"; };
+		E2D4B40E215BA61700C81F89 /* SEOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEOptionCell.swift; sourceTree = "<group>"; };
+		E2D4B40F215BA61700C81F89 /* SEOptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEOptionCell.xib; sourceTree = "<group>"; };
+		E2D4B413215BB2AD00C81F89 /* SEEvaluationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEEvaluationVC.swift; sourceTree = "<group>"; };
 		E2D7FE7D21406DF900D68831 /* SOT Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SOT Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2D7FE8021406DF900D68831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2D7FE8521406DF900D68831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -449,6 +461,10 @@
 				E218C1172142593B007B2F18 /* ParticipationListCell.swift */,
 				E218C1182142593B007B2F18 /* ParticipationListCell.xib */,
 				E2A08CE82144380A000D1F14 /* SpeakerProfileCell.swift */,
+				E2D4B40A215BA5FA00C81F89 /* SEEvaluationHeaderCell.swift */,
+				E2D4B40B215BA5FA00C81F89 /* SEEvaluationHeaderCell.xib */,
+				E2D4B40E215BA61700C81F89 /* SEOptionCell.swift */,
+				E2D4B40F215BA61700C81F89 /* SEOptionCell.xib */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -529,6 +545,15 @@
 				E2C3FAEB2141E025004A0CB2 /* SEProgrammVC.swift */,
 			);
 			path = SEProgrammVC;
+			sourceTree = "<group>";
+		};
+		E2D4B412215BB29A00C81F89 /* SEEvaluationVC */ = {
+			isa = PBXGroup;
+			children = (
+				E2D4B413215BB2AD00C81F89 /* SEEvaluationVC.swift */,
+				E206A691215CB94C007D90ED /* SEPOllVC.swift */,
+			);
+			path = SEEvaluationVC;
 			sourceTree = "<group>";
 		};
 		E2D7FE7421406DF900D68831 = {
@@ -772,6 +797,7 @@
 		E2D7FF2F2140708C00D68831 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E2D4B412215BB29A00C81F89 /* SEEvaluationVC */,
 				9924750D215A5D5B0089D6A1 /* SEHappeningVC */,
 				E292E9D121484CED007388BC /* SEChatVC */,
 				E29B16BC21453B00006DF9E4 /* SEAboutVC */,
@@ -846,7 +872,7 @@
 				E2D7FE7A21406DF900D68831 /* Frameworks */,
 				E2D7FE7B21406DF900D68831 /* Resources */,
 				F68E9F2B12B5ABE89E7F7BE3 /* [CP] Embed Pods Frameworks */,
-				6FEA2672612BA8E6F5BB696B /* [CP] Copy Pods Resources */,
+				83D301D5ED62CAC383E58F48 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -954,6 +980,7 @@
 				E2199C6A214109B40046908C /* Home.storyboard in Resources */,
 				E2199C7A2141225F0046908C /* UserInfoCell.xib in Resources */,
 				E2D7FF1C21406F9F00D68831 /* Poppins-BlackItalic.otf in Resources */,
+				E2D4B411215BA61700C81F89 /* SEOptionCell.xib in Resources */,
 				E2C3FAE72141DC27004A0CB2 /* ProgramHeaderCell.xib in Resources */,
 				E2D7FF0E21406F9F00D68831 /* Poppins-ExtraBoldItalic.otf in Resources */,
 				E2D7FE8621406DF900D68831 /* Main.storyboard in Resources */,
@@ -979,6 +1006,7 @@
 				E2D7FF4A21407CFE00D68831 /* Info.plist in Resources */,
 				E2D7FF1D21406F9F00D68831 /* Poppins-Regular.otf in Resources */,
 				E2D7FF1B21406F9F00D68831 /* Poppins-Black.otf in Resources */,
+				E2D4B40D215BA5FA00C81F89 /* SEEvaluationHeaderCell.xib in Resources */,
 				E2D7FF1221406F9F00D68831 /* Poppins-Light.otf in Resources */,
 				E2D7FF1321406F9F00D68831 /* Poppins-BoldItalic.otf in Resources */,
 				E218C116214252B9007B2F18 /* SessionDetailCell.xib in Resources */,
@@ -1004,24 +1032,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6FEA2672612BA8E6F5BB696B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SOT Events/Pods-SOT Events-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SOT Events/Pods-SOT Events-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		811A4DD9B8F88A30F82BEF2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1038,6 +1048,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83D301D5ED62CAC383E58F48 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SOT Events/Pods-SOT Events-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SOT Events/Pods-SOT Events-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		90C5AD531B13667A84453278 /* [CP] Check Pods Manifest.lock */ = {
@@ -1098,6 +1126,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
@@ -1128,6 +1157,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
@@ -1156,6 +1186,7 @@
 				E218C1192142593B007B2F18 /* ParticipationListCell.swift in Sources */,
 				E2C3FAEE2141E858004A0CB2 /* ParticipateCell.swift in Sources */,
 				E2D7FEFB21406F9F00D68831 /* WebServiceManager.swift in Sources */,
+				E2D4B410215BA61700C81F89 /* SEOptionCell.swift in Sources */,
 				E2D7FF2021406F9F00D68831 /* GradientView.swift in Sources */,
 				E2199C84214163740046908C /* KGRadioButton.swift in Sources */,
 				E2D7FF2821406F9F00D68831 /* BeaconsManager.swift in Sources */,
@@ -1172,7 +1203,9 @@
 				99247507215A5AEC0089D6A1 /* EventModel+CoreDataProperties.swift in Sources */,
 				E2D7FF2921406F9F00D68831 /* LocationManager.swift in Sources */,
 				E2C3FAE02141CB22004A0CB2 /* DashboardCell.swift in Sources */,
+				E2D4B414215BB2AD00C81F89 /* SEEvaluationVC.swift in Sources */,
 				E2199C6F21410B3D0046908C /* EventCell.swift in Sources */,
+				E2D4B40C215BA5FA00C81F89 /* SEEvaluationHeaderCell.swift in Sources */,
 				E2D7FF2621406F9F00D68831 /* LocationRequest.swift in Sources */,
 				E2D7FE8121406DF900D68831 /* AppDelegate.swift in Sources */,
 				E2D7FF0B21406F9F00D68831 /* MOCheckOut.swift in Sources */,
@@ -1240,6 +1273,7 @@
 				E2D7FF0821406F9F00D68831 /* ApplicationHelper.swift in Sources */,
 				99247517215A62500089D6A1 /* Model.xcdatamodeld in Sources */,
 				E218C1272142C935007B2F18 /* SEChangePasswordVC.swift in Sources */,
+				E206A692215CB94C007D90ED /* SEPOllVC.swift in Sources */,
 				E2C3FAE32141CCED004A0CB2 /* SEEventDetailVC.swift in Sources */,
 				E2D7FF0621406F9F00D68831 /* UtilityHelper.swift in Sources */,
 			);
@@ -1414,17 +1448,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D6197DC9F37DB32B20861DA /* Pods-SOT Events.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Z5SA5QBQW;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = Y9CEX4R9BY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SOT Events/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.trg.SOT-Events";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beaconhouse.sotevents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ce5b4715-aa86-4201-afbd-71ee3c1d284e";
+				PROVISIONING_PROFILE_SPECIFIER = SOT_DEVEL_LATESt;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1435,17 +1474,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C21D2F7411C3910E92C02240 /* Pods-SOT Events.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Z5SA5QBQW;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = Y9CEX4R9BY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SOT Events/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.trg.SOT-Events";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beaconhouse.sotevents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ce5b4715-aa86-4201-afbd-71ee3c1d284e";
+				PROVISIONING_PROFILE_SPECIFIER = SOT_DEVEL_LATESt;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ahmed/Documents/SOT Events/Resource/SOT Events-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

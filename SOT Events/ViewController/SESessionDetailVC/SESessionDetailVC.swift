@@ -183,6 +183,20 @@ extension SESessionDetailVC : ReadMore {
         vc?.programObject = programObject
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    func evaluationOfProgram(cell: SessionDetailCell, index: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SEEvaluationVC") as? SEEvaluationVC
+        vc?.eventObj = eventObj
+        vc?.programObject = programObject
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    func PollOfProgram(cell: SessionDetailCell, index: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SEPOllVC") as? SEPOllVC
+        vc?.eventObj = eventObj
+        vc?.programObject = programObject
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+
 
 }
 

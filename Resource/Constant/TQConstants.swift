@@ -278,6 +278,10 @@ let DELETE_GALLERY = BASE_URL + "deleteGallery"
 let RESETCODE = BASE_URL + "checkResetCode"
 let Logout = BASE_URL  + "logout"
 let ChnagePassword  = BASE_URL + "changePassword"
+let SESSIONEVALUATION  = BASE_URL + "session_evaluation"
+let PROGRAMPOLL  = BASE_URL + "program_polls"
+let INSERTUSERDEVICE  = BASE_URL + "insert_user_device"
+
 
 
 
